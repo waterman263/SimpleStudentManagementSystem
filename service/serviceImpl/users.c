@@ -9,13 +9,8 @@
  * 
  */
 
-#include <stdio.h>
-#include <ctype.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
-#include "users.h"
-#include "Windows.h"
+
+#include "service/users.h"
 
 
 #define RED_FRONT_COLOR "\033[0;32;31m"

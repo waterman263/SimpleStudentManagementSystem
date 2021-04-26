@@ -8,8 +8,7 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <stdio.h>
-#include "users.c"
+#include "service/users.h"
 
 int main(){
     printf("==========Welcome to Student Management System==========\n");

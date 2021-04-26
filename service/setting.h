@@ -8,8 +8,9 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <stdio.h>
 
+#ifndef _SETTING_H
+#define _SETTING_H
 enum STRING_TYPE{
     PASSWORD,
     TELEPHONE_NUMBER,
@@ -24,3 +25,4 @@ enum BOOLEAN_USE{
     IS_FIRST_USER,
     NOT_FIRST_USER
 };
+#endif

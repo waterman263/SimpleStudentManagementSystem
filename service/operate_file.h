@@ -8,8 +8,10 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <stdio.h>
 
+#ifndef _OPERATE_FILE_H
+#define _OPERATE_FILE_H
+#include <stdio.h>
 #define USER_ACCOUNT_DATA "settings/user_accounts.ini"
 
 enum OPERATE_FILE {
@@ -19,3 +21,4 @@ enum OPERATE_FILE {
 
 enum OPERATE_FILE open_file(int file_type, FILE **fp);
 enum OPERATE_FILE close_file(int file_type, FILE **fp);
+#endif

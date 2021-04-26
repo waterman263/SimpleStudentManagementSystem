@@ -8,10 +8,15 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <stdio.h>
-#include "administrator.h"
-#include "tool.h"
 
+
+#ifndef _USERS_H
+#define _USERS_H
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include "entity/administrator.h"
+#include "tool.h"
 enum USER_ROLE {
     ADMINISTRATOR = -5,
     SUBJECT_TEACHER,
@@ -28,7 +33,7 @@ typedef struct users
     struct users *next;
 }users, *USER;
 
-typedef struct head_poionter{
+typedef struct head_pointer{
     enum BOOLEAN_USE ishead;
     struct users *next;
 }head, *head_p;
@@ -42,3 +47,5 @@ enum USER_ROLE check_account(long account, char password[]);
 
 // initialize the head
 head_p initial_List();
+
+#endif
