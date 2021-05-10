@@ -15,7 +15,7 @@ int main(){
     head_p user_head_pointer = initial_List();
     enum BOOLEAN_USE is_first = IS_FIRST_USER;
     USER users = create_user(user_head_pointer->next, is_first);
-    printf("%ld",users->work_number);
+    printf("%ld", users->work_number);
 
     return 0;
 }
