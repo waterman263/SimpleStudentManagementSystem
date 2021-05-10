@@ -8,25 +8,24 @@
  * @copyright Copyright (c) 2021
  * 
  */
-
-
 #ifndef _USERS_H
 #define _USERS_H
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 #include "entity/administrator.h"
 #include "tool.h"
 enum USER_ROLE {
     ADMINISTRATOR = -5,
     SUBJECT_TEACHER,
-    CONSELLOR,
+    COUNSELLOR,
     GUIDANCE_DIRECTOR
 };
 
 typedef struct users
 {
-    long account;
+    long long account;
     char password[32];
     long work_number;
     enum USER_ROLE USER_ROLE;
@@ -34,12 +33,10 @@ typedef struct users
 }users, *USER;
 
 typedef struct head_pointer{
-    enum BOOLEAN_USE ishead;
+    enum BOOLEAN_USE isHead;
     struct users *next;
 }head, *head_p;
 
-// TODO: finish create_user
-// TODO: finish check_account
 USER create_user(USER user, enum BOOLEAN_USE is_first);
 USER set_user(USER user, enum BOOLEAN_USE is_first);
 
