@@ -10,7 +10,7 @@
  */
 
 #include <stdbool.h>
-#include "service/tool.h"
+#include "tool.h"
 
 enum OPERATE_FILE check_string(int string_type, char *string){
 
