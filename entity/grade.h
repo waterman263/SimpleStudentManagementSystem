@@ -13,8 +13,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef CODEFIELD_GRADE_H
-#define CODEFIELD_GRADE_H
+#ifndef _GRADE_H
+#define _GRADE_H
 typedef struct grade
 {
     int *grade;
@@ -25,4 +25,4 @@ typedef struct grade
     struct grade *next;
 };
 
-#endif //CODEFIELD_GRADE_H
+#endif //_GRADE_H
