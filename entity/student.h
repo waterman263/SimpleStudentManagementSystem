@@ -16,8 +16,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef CODEFIELD_STUDENT_H
-#define CODEFIELD_STUDENT_H
+#ifndef _STUDENT_H
+#define _STUDENT_H
 typedef struct student
 {
     int *class;
