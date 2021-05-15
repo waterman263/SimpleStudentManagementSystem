@@ -13,8 +13,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef CODEFIELD_TEACHER_H
-#define CODEFIELD_TEACHER_H
+#ifndef _TEACHER_H
+#define _TEACHER_H
 typedef struct teacher
 {
     int project;
@@ -27,4 +27,4 @@ typedef struct teacher
 }teacher,*tea;
 
 
-#endif //CODEFIELD_TEACHER_H
+#endif //_TEACHER_H
