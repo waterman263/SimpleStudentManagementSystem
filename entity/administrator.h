@@ -8,7 +8,9 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include <stdio.h>
+
+#ifndef _ADMINISTRATOR_H
+#define _ADMINISTRATOR_H
 
 typedef struct administrator
 {
@@ -18,3 +20,5 @@ typedef struct administrator
     char name[10];
     struct administrator *next;
 }administrator, *admin;
+
+#endif

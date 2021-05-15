@@ -12,13 +12,19 @@
 #ifndef _OPERATE_FILE_H
 #define _OPERATE_FILE_H
 #include <stdio.h>
-#define USER_ACCOUNT_DATA "settings/user_accounts.ini"
+#include "setting.h"
+#define USER_DATA "data/users_data.json"
 
 enum OPERATE_FILE {
     SUCCESS = 200,
     FAILED = 404
 };
 
-enum OPERATE_FILE open_file(int file_type, FILE **fp);
-enum OPERATE_FILE close_file(int file_type, FILE **fp);
+enum FILE_TYPE {
+    USERS_DATA
+};
+
+enum OPERATE_FILE open_file(enum FILE_TYPE file_type, FILE **fp);
+enum OPERATE_FILE close_file(enum FILE_TYPE file_type, FILE **fp);
+enum OPERATE_FILE read_file_data(enum FILE_TYPE file_type, FILE *fp);
 #endif
