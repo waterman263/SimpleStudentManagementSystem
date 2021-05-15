@@ -1,21 +1,38 @@
-/**
- * @file main.c
- * @author @Loritas
- * @brief system main program
- * @version 0.1
- * @date 2021-03-14
- * 
- * @copyright Copyright (c) 2021
- * 
- */
-#include "service/users.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include<stdbool.h>
 
-int main(){
-    printf("==========Welcome to Student Management System==========\n");
-    head_p user_head_pointer = initial_List();
-    enum BOOLEAN_USE is_first = IS_FIRST_USER;
-    USER users = create_user(user_head_pointer->next, is_first);
-    printf("%ld",users->work_number);
 
-    return 0;
+ typedef struct score
+    {
+        int score1;
+        int score2;
+        int score3;
+        int score4;
+        int score5;
+    }score;
+typedef struct student
+    {
+        int *class;
+        int number;
+        char name[20];
+        char email[30];
+        int phonenumber;
+        int total;
+        int point;
+        bool test;
+        score sco;
+    }stu;
+typedef struct teacher
+    {
+        int project;
+        struct teancher *teach;
+        int jobnumber;
+        char name[20];
+        int phonenumber;
+        char email[30];
+    }teacher;
+main()
+{
+
 }
