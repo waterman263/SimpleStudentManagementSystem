@@ -4,11 +4,12 @@
  * @brief implement user.h
  * @version 0.1
  * @date 2021-03-14
- * 
+ *
+ *
  * @copyright Copyright (c) 2021
  * 
  */
-#include "service/serviceHead/users.h"
+#include "serviceHead/users.h"
 
 USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
 
