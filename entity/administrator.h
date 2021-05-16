@@ -15,10 +15,14 @@
 typedef struct administrator
 {
     long work_number;
-    int phone_number;
-    char email[30];
-    char name[10];
+    char phone_number[12];
+    char email[33];
+    char name[20];
     struct administrator *next;
 }administrator, *admin;
 
-#endif
+typedef struct administrator_head_pointer{
+    struct administrator *next;
+}administrator_head_p, *admin_head_p;
+
+#endif //_ADMINISTRATOR_H

@@ -8,5 +8,3 @@
  * @copyright Copyright (c) 2021
  *
  */
-
-#include "cjson_utils.h"

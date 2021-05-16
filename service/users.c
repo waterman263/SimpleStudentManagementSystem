@@ -10,6 +10,8 @@
  * 
  */
 #include "serviceHead/users.h"
+#define RED_FRONT_COLOR "\033[0;32;31m"
+#define COLOR_NONE  "\033[m"
 
 USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
 
@@ -58,7 +60,7 @@ users_head_p initial_User_List(){
         exit(0);
     }
 
-    head_point->isHead=TRUE_RES;
+    head_point->isHead = TRUE_RES;
     head_point->next = NULL;
     return head_point;
 }
