@@ -11,8 +11,7 @@
 
 #ifndef _SETTING_H
 #define _SETTING_H
-#define RED_FRONT_COLOR "\033[0;32;31m"
-#define COLOR_NONE  "\033[m"
+
 enum STRING_TYPE{
     PASSWORD,
     TELEPHONE_NUMBER,
@@ -26,5 +25,13 @@ enum BOOLEAN_USE{
     FALSE_RES,
     IS_FIRST_USER,
     NOT_FIRST_USER
+};
+
+enum SUBJECT{
+    ADVANCED_MATHEMATICS = 0,
+    ENGLISH,
+    C_PROGRAM_LANGUAGE,
+    PHYSICAL_EDUCATION,
+    PYTHON
 };
 #endif

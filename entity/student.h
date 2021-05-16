@@ -18,18 +18,24 @@
  */
 #ifndef _STUDENT_H
 #define _STUDENT_H
+#include "classes.h"
+
 typedef struct student
 {
-    int *class;
-    int number;
+    struct classes *class;
+    long long uid;
     char name[20];
-    char email[30];
-    int phone_number;
-    int total;
-    int point;
-    bool test;
-    score sco;
+    char email[33];
+    char phone_number[12];
+    float subject_score[5][1];
+    float average_score;
+    float gpa;
+    enum BOOLEAN_USE HAS_SCORE_INPUT;
     struct student *next;
-}student,*stu;
+}student, *student_p;
 
-#endif //CODEFIELD_STUDENT_H
+typedef struct student_head_pointer{
+    struct student *next;
+}student_head_p, *stu_head_p;
+
+#endif //_STUDENT_H
