@@ -26,7 +26,7 @@ enum USER_ROLE {
 typedef struct users
 {
     long long account;
-    char password[32];
+    char password[33];
     long work_number;
     enum USER_ROLE USER_ROLE;
     struct users *next;
@@ -49,5 +49,8 @@ _Bool check_exist_work_number(users_head_p head, long work_number_input);
 
 // initialize the users_head
 users_head_p initial_User_List();
+
+// convert data to objects
+void convert_user(users_head_p head, FILE *user_data);
 
 #endif

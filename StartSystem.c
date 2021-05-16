@@ -13,15 +13,15 @@
 int main(){
     printf("==========Welcome to Student Management System==========\n");
     users_head_p user_head_pointer = initial_User_List();
-
     enum BOOLEAN_USE is_first = IS_FIRST_USER;
     USER users = create_user(user_head_pointer->next, user_head_pointer, is_first);
     user_head_pointer->next = users;
-    printf("%ld\n", users->work_number);
+    printf("%ld %s\n", users->work_number, users->password);
     USER second_user = create_user(users->next, user_head_pointer, NOT_FIRST_USER);
     users->next = second_user;
     printf("%ld %s\n", second_user->work_number, second_user->password);
     printf("Reading data files, please hold on......\n");
+//    open_file(USERS_DATA);
 
 
     return 0;
