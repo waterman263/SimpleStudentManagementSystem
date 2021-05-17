@@ -14,7 +14,8 @@
 #include "service/serviceHead/setting.h"
 
 typedef struct counsellors{
-    struct classes *classes[3];
+    char uid[24];
+    char classes_uid[3][20];
     long work_number;
     char phone_number[12];
     char email[33];

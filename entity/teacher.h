@@ -20,8 +20,9 @@
 
 typedef struct teacher
 {
+    char uid[24];
     enum SUBJECT subject;
-    struct classes *classes[3];
+    char classes_uid[20];
     long work_number;
     char name[20];
     char phone_number[12];

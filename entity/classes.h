@@ -14,8 +14,9 @@
 #include "service/serviceHead/setting.h"
 
 typedef struct classes{
-    struct grade *current_grade;
-    struct counsellors *counsellor;
+    char uid[24];
+    char grade_uid[20];
+    char counsellor_uid[20];
     long class_number;
     char *subject_aver[5][1];
     float general_aver;

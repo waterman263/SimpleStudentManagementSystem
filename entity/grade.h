@@ -18,6 +18,7 @@
 #include "service/serviceHead/setting.h"
 
 typedef struct grade{
+    char uid[24];
     int grade_number;
     int class_total;
     float *subject_aver[5][1];

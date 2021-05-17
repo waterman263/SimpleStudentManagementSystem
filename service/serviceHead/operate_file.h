@@ -18,7 +18,7 @@
 #include "utils/cjson_utils.h"
 #define USER_DATA "../data/users_data.json"
 
-enum OPERATE_FILE {
+enum OPERATE {
     SUCCESS = 200,
     FAILED = 404
 };
@@ -27,8 +27,8 @@ enum FILE_TYPE {
     USERS_DATA
 };
 
-enum OPERATE_FILE open_file(enum FILE_TYPE file_type, void *struct_pointer);
-enum OPERATE_FILE close_file(enum FILE_TYPE file_type, FILE **fp);
-enum OPERATE_FILE read_file_data(enum FILE_TYPE file_type, char  *json_data, void *struct_pointer);
-enum OPERATE_FILE parsing_users_data(char *json_data, void *struct_pointer);
+enum OPERATE open_file(enum FILE_TYPE file_type, void *struct_pointer);
+enum OPERATE close_file(enum FILE_TYPE file_type, FILE **fp);
+enum OPERATE read_file_data(enum FILE_TYPE file_type, char  *json_data, void *struct_pointer);
+enum OPERATE parsing_users_data(char *json_data, void *struct_pointer);
 #endif
