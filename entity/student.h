@@ -22,8 +22,8 @@
 
 typedef struct student
 {
-    struct classes *class;
-    long long uid;
+    char uid[24];
+    char class_uid[20];
     char name[20];
     char email[33];
     char phone_number[12];

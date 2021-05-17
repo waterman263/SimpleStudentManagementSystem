@@ -13,6 +13,7 @@
 #include "service/serviceHead/setting.h"
 
 typedef struct guidance_director{
+    char uid[24];
     long work_number;
     char phone_number[11];
     char email[30];

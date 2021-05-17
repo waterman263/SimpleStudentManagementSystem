@@ -11,8 +11,15 @@
 
 #include "cjson_utils.h"
 
-
-enum OPERATE_FILE parsing_user_data(char *json_data, void *struct_pointer){
+/**
+ * @author Loritas
+ * @brief parsing data from json
+ *
+ * @param json_data  origin string data
+ * @param struct_pointer  target_head_pointer
+ * @return tag for whether operate success
+ */
+enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
     users_head_p usersHeadP = (users_head_p) struct_pointer;
     USER temp;
     cJSON *root = cJSON_Parse(json_data);

@@ -13,6 +13,45 @@
 #define RED_FRONT_COLOR "\033[0;32;31m"
 #define COLOR_NONE  "\033[m"
 
+/**
+ * @author Loritas
+ * @brief Function for initial user list
+ * @date 2021-3-14
+ *
+ * @return head_point for user list
+ */
+users_head_p initial_User_List(){
+    users_head_p head_point = (users_head_p)malloc(sizeof(users_head));
+
+    if (head_point == NULL)
+    {
+        printf(RED_FRONT_COLOR"Warning: Your computer has not enough free memory,\n"COLOR_NONE);
+        printf(RED_FRONT_COLOR"please press any key to exit this program."COLOR_NONE);
+        getchar();
+        exit(0);
+    }
+
+    head_point->isHead = TRUE_RES;
+    head_point->next = NULL;
+    return head_point;
+}
+
+enum USER_ROLE check_account(long account, char password[]){
+    enum USER_ROLE result = ADMINISTRATOR;
+    return result;
+}
+
+/**
+ * @author Loritas
+ * @brief create new user
+ * @date 2021-3-14
+ *
+ * @param user
+ * @param head  head pointer
+ * @param is_first  whether the first to create user
+ * @return  new user
+ */
+ // todo: optimize function
 USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
 
     // if the pointer has a value, return an error
@@ -39,40 +78,17 @@ USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
     return new_user;
 }
 
-enum USER_ROLE check_account(long account, char password[]){
-    enum USER_ROLE result = ADMINISTRATOR;
-    return result;
-}
-
-
 /**
- * @brief Function for initial list
- * @return head_point for user list
- */
-users_head_p initial_User_List(){
-    users_head_p head_point = (users_head_p)malloc(sizeof(users_head));
-
-    if (head_point == NULL)
-    {
-        printf(RED_FRONT_COLOR"Warning: Your computer has not enough free memory,\n"COLOR_NONE);
-        printf(RED_FRONT_COLOR"please press any key to exit this program."COLOR_NONE);
-        getchar();
-        exit(0);
-    }
-
-    head_point->isHead = TRUE_RES;
-    head_point->next = NULL;
-    return head_point;
-}
-
-/**
+ * @author Loritas
  * @brief set the properties of user
+ * @date 2021-3-14
  *
  * @param user new user
  * @param is_first whether it is the first time to create user
  *
  * @return USER entity
  */
+ // todo: set uid
 USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
 
     char user_account[11];
@@ -286,6 +302,8 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
     return user;
 }
 
+
+// check data
 _Bool check_exist_account(users_head_p head, long long account_input) {
     USER users = head->next;
     while (users != NULL){

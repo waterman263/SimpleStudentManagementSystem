@@ -14,7 +14,7 @@
 #include "service/serviceHead/users.h"
 #include "cJSON.h"
 
-// todo: read & save Users data
-enum OPERATE_FILE parsing_user_data(char *json_data, void *struct_pointer);
+
+enum OPERATE parsing_user_data(char *json_data, void *struct_pointer);
 
 #endif //CJSON_UTILS_H

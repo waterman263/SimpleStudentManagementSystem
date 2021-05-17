@@ -14,6 +14,7 @@
 
 typedef struct administrator
 {
+    char uid[24];
     long work_number;
     char phone_number[12];
     char email[33];
