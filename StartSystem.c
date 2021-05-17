@@ -13,17 +13,18 @@
 
 int main(){
     printf("==========Welcome to Student Management System==========\n");
-//    users_head_p user_head_pointer = initial_User_List();
-//    printf("Reading data files, please hold on......\n");
-//    open_file(USERS_DATA, user_head_pointer);
-//    USER user = user_head_pointer->next;
+    users_head_p user_head_pointer = initial_User_List();
+    printf("Reading data files, please hold on......\n");
+    open_file(USERS_DATA, user_head_pointer);
+    USER user = NULL;
+    login(user_head_pointer, &user);
 //    while (user != NULL){
 //        printf("%lld %ld %s\n", user->account, user->work_number, user->password);
 //        user = user->next;
 //    }
-    char test_uid[24];
-    create_uid(test_uid);
-    printf("%s", test_uid);
+//    char test_uid[24];
+//    create_uid(test_uid);
+//    printf("%s", test_uid);
     return 0;
 }
 

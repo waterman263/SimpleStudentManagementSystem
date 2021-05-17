@@ -36,10 +36,6 @@ users_head_p initial_User_List(){
     return head_point;
 }
 
-enum USER_ROLE check_account(long account, char password[]){
-    enum USER_ROLE result = ADMINISTRATOR;
-    return result;
-}
 
 /**
  * @author Loritas
@@ -91,14 +87,16 @@ USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
  // todo: set uid
 USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
 
-    char user_account[11];
-    char *accounts = user_account;
+    char user_account[12];
 
     char user_password[33];
     char *password_save = user_password;
 
     char user_work_number [10];
     char *work_number = user_work_number;
+
+    char user_name[21];
+    char *get_name = user_name;
 
     // If it is the first time to create a user
     if (is_first == IS_FIRST_USER)
@@ -113,8 +111,8 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
         fflush(stdin);
 
         while (true) {
-            if (check_string(ACCOUNT, user_account) == SUCCESS && atol(user_account) != 0) {
-                user->account = atol(user_account);
+            if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+                user->account = atoll(user_account);
                 printf("OK. There's nothing wrong with your account number.\n");
                 break;
             }else {
@@ -222,15 +220,15 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
         fflush(stdin);
 
         while (true) {
-            if (check_string(ACCOUNT, user_account) == SUCCESS && atol(user_account) != 0) {
-                if (check_exist_account(head, atol(user_account))){
+            if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+                if (check_exist_account(head, atoll(user_account))){
                     printf("The account you entered already exists, Please enter your account again.\n");
                     printf("Your account:");
                     fgets(user_account, 11, stdin);
                     fflush(stdin);
                     continue;
                 }
-                user->account = atol(user_account);
+                user->account = atoll(user_account);
                 printf("OK. There's nothing wrong with your account number.\n");
                 break;
             }
@@ -251,7 +249,7 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
             if (strlen(password_save) == 1){
                 printf("Your password cannot be empty! Please enter your password again.\n");
                 printf("Your password:");
-                fgets(accounts, 33, stdin);
+                fgets(password_save, 33, stdin);
                 fflush(stdin);
             }
             else if (check_string(PASSWORD, user_password)==SUCCESS) {
@@ -299,9 +297,92 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
             }
         }
     }
-    return user;
+
+     printf("Please enter your name, it's maxsize is 20\n");
+     printf("Your name:");
+     fgets(get_name, 20, stdin);
+     fflush(stdin);
+
+     int i = 0;
+     while (*get_name != '\n') {
+         user->name[i] = *password_save;
+         password_save++;
+         i++;
+     }
+     printf("OK. Now we will return to the menu.\n");
+
+     return user;
 }
 
+
+enum OPERATE login(users_head_p head, USER *user){
+    long long account;
+    char user_account[12];
+    char user_password[33];
+    char *password = user_password;
+    do {
+        printf("Please enter your account:\n");
+        fgets(user_account, 11, stdin);
+        fflush(stdin);
+
+        while (true){
+            if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+                account = atoll(user_account);
+                break;
+            }else {
+                printf("You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
+                printf("Your account:");
+                fgets(user_account, 11, stdin);
+                fflush(stdin);
+            }
+        }
+
+        printf("Now please enter your password:\n");
+        fgets(password, 32, stdin);
+        fflush(stdin);
+
+        printf("OK.If you want to return to the main menu, you can enter 1, "
+               "or the system will check your account and password.\n");
+
+        char switch_number = '0';
+        scanf("%c",&switch_number);
+        fflush(stdin);
+
+        if (switch_number == '1'){
+            printf("OK, now you will return to the main menu.\n");
+            return FAILED;
+        }else {
+            printf("OK, now the system will check your account and password\n");
+        }
+
+    } while (check_account(account, password, head, user) != SUCCESS);
+    printf("Welcome! %s", (*user)->name);
+    return SUCCESS;
+}
+
+enum OPERATE check_account(long long account, char password[], users_head_p head, USER *user){
+    char *temp_password = password;
+    USER temp_for_check = head->next;
+    while (temp_for_check != NULL){
+        if (temp_for_check->account == account) break;
+        temp_for_check = temp_for_check->next;
+    }
+
+    if (temp_for_check == NULL){
+        printf("The account is not exist yet, please check your account!\n");
+        return FAILED;
+    }
+
+    int i = 0;
+    while (temp_password[i] != '\n') i++;
+    temp_password[i] = '\0';
+    if (strcmp(temp_for_check->password, password) != 0){
+        printf("Your password is not correct, please check your password!\n");
+        return FAILED;
+    }
+    *user = temp_for_check;
+    return SUCCESS;
+}
 
 // check data
 _Bool check_exist_account(users_head_p head, long long account_input) {

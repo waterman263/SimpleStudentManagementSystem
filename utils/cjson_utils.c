@@ -49,11 +49,13 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
         cJSON *work_number = cJSON_GetObjectItem(get_user, "work_number");
         cJSON *password = cJSON_GetObjectItem(get_user, "password");
         cJSON *user_role = cJSON_GetObjectItem(get_user, "user_role");
-        if (account == NULL || work_number == NULL || password == NULL || user_role == NULL){
+        cJSON *user_name = cJSON_GetObjectItem(get_user, "name");
+        if (account == NULL || work_number == NULL || password == NULL || user_role == NULL || user_name == NULL){
             cJSON_Delete(account);
             cJSON_Delete(work_number);
             cJSON_Delete(password);
             cJSON_Delete(user_role);
+            cJSON_Delete(user_name);
             return FAILED;
         }
 
@@ -61,13 +63,14 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
         char *user_work_number = cJSON_Print(work_number);
         char *user_password = cJSON_Print(password);
         char *users_role = cJSON_Print(user_role);
+        char *users_name = cJSON_Print(user_name);
 
 //        printf("%s\n%s\n%s\n%s\n", user_account, user_password, user_work_number, users_role);
 
         char *check_1 = NULL;
         char *check_2 = NULL;
 
-        user->account = strtol(user_account, &check_1, 10);
+        user->account = strtoll(user_account, &check_1, 10);
         if (strcmp(check_1, "\0") != 0){
             printf("Warning: The data read is illegal, please check your data file!\n");
             printf("Target: users_data.json - account\n");
@@ -96,7 +99,17 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
             printf("Warning: The data read is illegal, please check your data file!\n");
             printf("Target: users_data.json - password\n");
             return FAILED;
+        }else user->password[k] = '\0';
+
+        int m = 0, n = 1;
+        while (users_name[n] != '\"' && m < 21){
+            user->name[m++] = users_name[n++];
         }
+        if (users_name[n] != '\"'){
+            printf("Warning: The data read is illegal, please check your data file!\n");
+            printf("Target: users_data.json - password\n");
+            return FAILED;
+        }else user->name[m] = '\0';
 
         if (i == 0){
             usersHeadP->next = user;
