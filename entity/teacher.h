@@ -14,8 +14,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef _TEACHER_H
-#define _TEACHER_H
+#ifndef TEACHER_H
+#define TEACHER_H
 #include "service/serviceHead/setting.h"
 
 typedef struct teacher

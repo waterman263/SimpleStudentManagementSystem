@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _COUNSELLORS_H
-#define _COUNSELLORS_H
+#ifndef COUNSELLORS_H
+#define COUNSELLORS_H
 #include "service/serviceHead/setting.h"
 
 typedef struct counsellors{
