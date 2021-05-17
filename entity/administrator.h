@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef _ADMINISTRATOR_H
-#define _ADMINISTRATOR_H
+#ifndef ADMINISTRATOR_H
+#define ADMINISTRATOR_H
 
 typedef struct administrator
 {

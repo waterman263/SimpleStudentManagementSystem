@@ -4,18 +4,19 @@
  * @brief provides interface for operating users
  * @version 0.1
  * @date 2021-03-14
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
-#ifndef _USERS_H
-#define _USERS_H
+#ifndef USERS_H
+#define USERS_H
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include "entity/administrator.h"
 #include "utils/tool.h"
+
 enum USER_ROLE {
     ADMINISTRATOR = -5,
     SUBJECT_TEACHER,

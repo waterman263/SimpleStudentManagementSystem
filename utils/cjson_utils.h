@@ -9,10 +9,12 @@
  *
  */
 // todo: finish cjson_utils
-#ifndef _CJSON_UTILS_H
-#define _CJSON_UTILS_H
-#include "cJSON.c"
+#ifndef CJSON_UTILS_H
+#define CJSON_UTILS_H
+#include "service/serviceHead/users.h"
+#include "cJSON.h"
 
 // todo: read & save Users data
+enum OPERATE_FILE parsing_user_data(char *json_data, void *struct_pointer);
 
-#endif //_CJSON_UTILS_H
+#endif //CJSON_UTILS_H

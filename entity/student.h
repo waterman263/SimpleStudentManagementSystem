@@ -16,8 +16,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef _STUDENT_H
-#define _STUDENT_H
+#ifndef STUDENT_H
+#define STUDENT_H
 #include "classes.h"
 
 typedef struct student

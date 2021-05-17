@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef _GUIDANCE_DIRECTOR_H
-#define _GUIDANCE_DIRECTOR_H
+#ifndef GUIDANCE_DIRECTOR_H
+#define GUIDANCE_DIRECTOR_H
 #include "service/serviceHead/setting.h"
 
 typedef struct guidance_director{

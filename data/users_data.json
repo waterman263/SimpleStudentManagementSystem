@@ -2,21 +2,21 @@
   "users" : [
     {
       "account" : 114514,
-      "password" : 1919180,
+      "password" : "1919180",
       "work_number" : 11451419,
-      "user_role" : "administrator"
+      "user_role" : -5
     },
     {
       "account" : 123456,
-      "password" : 7891011,
+      "password" : "7891011",
       "work_number" : 654321,
-      "user_role" : "administrator"
+      "user_role" : -5
     },
     {
       "account" : 1598743,
-      "password" : 16547983,
+      "password" : "16547983",
       "work_number" : 1234567,
-      "user_role" : "administrator"
+      "user_role" : -4
     }
   ]
 }

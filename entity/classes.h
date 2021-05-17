@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef _CLASSES_H
-#define _CLASSES_H
+#ifndef CLASSES_H
+#define CLASSES_H
 #include "service/serviceHead/setting.h"
 
 typedef struct classes{

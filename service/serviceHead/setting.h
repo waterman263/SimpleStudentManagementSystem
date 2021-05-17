@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef _SETTING_H
-#define _SETTING_H
+#ifndef SETTING_H
+#define SETTING_H
 
 enum STRING_TYPE{
     PASSWORD,

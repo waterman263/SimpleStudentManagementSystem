@@ -13,8 +13,8 @@
  * @copyright Copyright (c) 2021
  *
  */
-#ifndef _GRADE_H
-#define _GRADE_H
+#ifndef GRADE_H
+#define GRADE_H
 #include "service/serviceHead/setting.h"
 
 typedef struct grade{
