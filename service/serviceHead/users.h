@@ -27,6 +27,7 @@ enum USER_ROLE {
 typedef struct users
 {
     long long account;
+    char name[21];
     char password[33];
     long work_number;
     enum USER_ROLE USER_ROLE;
@@ -38,11 +39,9 @@ typedef struct users_head_pointer{
     struct users *next;
 }users_head, *users_head_p;
 
-USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
-USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
 
-// todo: check_account
-enum USER_ROLE check_account(long account, char password[]);
+enum OPERATE login(users_head_p head, USER *user);
+enum OPERATE check_account(long long account, char password[], users_head_p head, USER *user);
 
 // check data
 _Bool check_exist_account(users_head_p head, long long account_input);
@@ -50,6 +49,9 @@ _Bool check_exist_work_number(users_head_p head, long work_number_input);
 
 // initialize the users_head
 users_head_p initial_User_List();
+// create and set user
+USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
+USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
 
 // convert data to objects
 void convert_user(users_head_p head, FILE *user_data);

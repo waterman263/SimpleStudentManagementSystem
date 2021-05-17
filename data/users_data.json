@@ -1,22 +1,32 @@
 {
   "users" : [
     {
+      "name": "Bob",
       "account" : 114514,
       "password" : "1919180",
       "work_number" : 11451419,
       "user_role" : -5
     },
     {
+      "name": "Zoe",
       "account" : 123456,
       "password" : "7891011",
       "work_number" : 654321,
-      "user_role" : -5
+      "user_role" : -3
     },
     {
+      "name": "TianLong Zhou",
       "account" : 1598743,
       "password" : "16547983",
       "work_number" : 1234567,
       "user_role" : -4
+    },
+    {
+      "name": "Loritas",
+      "account" : 2223292817,
+      "password" : "Loritas123456",
+      "work_number" : 66666666,
+      "user_role" : -5
     }
   ]
 }
