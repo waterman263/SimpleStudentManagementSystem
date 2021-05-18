@@ -11,6 +11,8 @@
 
 #ifndef SETTING_H
 #define SETTING_H
+#define RED_FRONT_COLOR "\033[0;32;31m"
+#define COLOR_NONE  "\033[m"
 
 enum STRING_TYPE{
     PASSWORD,

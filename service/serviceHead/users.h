@@ -17,6 +17,7 @@
 #include "entity/administrator.h"
 #include "utils/tool.h"
 
+
 enum USER_ROLE {
     ADMINISTRATOR = -5,
     SUBJECT_TEACHER,
@@ -51,7 +52,7 @@ _Bool check_exist_work_number(users_head_p head, long work_number_input);
 // initialize the users_head
 users_head_p initial_User_List();
 // create and set user
-USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
+USER create_user(users_head_p head, enum BOOLEAN_USE is_first);
 USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
 
 // delete target user
