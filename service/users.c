@@ -10,8 +10,7 @@
  * 
  */
 #include "serviceHead/users.h"
-#define RED_FRONT_COLOR "\033[0;32;31m"
-#define COLOR_NONE  "\033[m"
+
 
 /**
  * @author Loritas
@@ -49,29 +48,34 @@ users_head_p initial_User_List(){
  * @return  new user
  */
  // todo: optimize function
-USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
+USER create_user(users_head_p head, enum BOOLEAN_USE is_first){
 
     // if the pointer has a value, return an error
-    if (user != NULL)
-    {
+    if (head == NULL){
         printf(RED_FRONT_COLOR"An unexpected error has been created,"COLOR_NONE);
         printf(RED_FRONT_COLOR" please save your work and exit this program.\n"COLOR_NONE);
         return NULL;
     }
 
+    USER temp_user = head->next;
+
     USER new_user = (USER)malloc(sizeof(users));
 
-    if (!new_user)
-    {
+    if (new_user == NULL){
         printf(RED_FRONT_COLOR"Warning: Your computer has not enough free memory,"COLOR_NONE);
         printf(RED_FRONT_COLOR" please save your work and exit this program.\n"COLOR_NONE);
         return NULL;
     }
     new_user->next = NULL;
     new_user = set_user(new_user, head, is_first);
-    user = new_user;
 
-    printf("That's alright.Returning to the main menu\n");
+     while (temp_user->next != NULL){
+         temp_user = temp_user->next;
+     }
+
+     temp_user->next = new_user;
+
+    printf("That's alright.Returning to the menu\n");
     return new_user;
 }
 
@@ -437,8 +441,8 @@ enum OPERATE query_one_user(users_head_p head){
         return FAILED;
     }
 
-
     char users_role[4][20] = {"ADMINISTRATOR", "SUBJECT_TEACHER", "COUNSELLOR", "GUIDANCE_DIRECTOR"};
+
     long long account;
     char user_account[12];
     USER temp_for_check = head->next;
@@ -648,7 +652,7 @@ enum OPERATE login(users_head_p head, USER *user){
     char user_password[33];
     char *password = user_password;
     do {
-        printf("Please enter your account:\n");
+        printf("==Please enter your account:\n");
         fgets(user_account, 11, stdin);
         fflush(stdin);
 
@@ -657,18 +661,18 @@ enum OPERATE login(users_head_p head, USER *user){
                 account = atoll(user_account);
                 break;
             }else {
-                printf("You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
-                printf("Your account:");
+                printf("==You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
+                printf("==Your account:");
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }
         }
 
-        printf("Now please enter your password:\n");
+        printf("==Now please enter your password:\n");
         fgets(password, 32, stdin);
         fflush(stdin);
 
-        printf("OK.If you want to return to the main menu, you can enter 1, "
+        printf("==OK.If you want to return to the main menu, you can enter 1, "
                "or the system will check your account and password.\n");
 
         char switch_number = '0';
@@ -676,14 +680,14 @@ enum OPERATE login(users_head_p head, USER *user){
         fflush(stdin);
 
         if (switch_number == '1'){
-            printf("OK, now you will return to the main menu.\n");
+            printf("==OK, now you will return to the main menu.\n");
             return FAILED;
         }else {
-            printf("OK, now the system will check your account and password\n");
+            printf("==OK, now the system will check your account and password\n");
         }
 
     } while (check_account(account, password, head, user) != SUCCESS);
-    printf("Welcome back! %s\n", (*user)->name);
+
     return SUCCESS;
 }
 
