@@ -16,7 +16,6 @@ enum STRING_TYPE{
     PASSWORD,
     TELEPHONE_NUMBER,
     EMAIL,
-    WORK_NUMBER,
     ACCOUNT
 };
 
@@ -24,7 +23,7 @@ enum BOOLEAN_USE{
     TRUE_RES,
     FALSE_RES,
     IS_FIRST_USER,
-    NOT_FIRST_USER
+    NOT_FIRST_USER,
 };
 
 enum SUBJECT{

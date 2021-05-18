@@ -36,6 +36,7 @@ typedef struct users
 
 typedef struct users_head_pointer{
     enum BOOLEAN_USE isHead;
+    int administrator_number;
     struct users *next;
 }users_head, *users_head_p;
 
@@ -53,7 +54,18 @@ users_head_p initial_User_List();
 USER create_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
 USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first);
 
-// convert data to objects
+// delete target user
+enum OPERATE delete_user(users_head_p head, USER current_user);
+
+// query user's information
+enum OPERATE query_user(users_head_p head, int select_all_user);
+enum OPERATE query_all_user(users_head_p head);
+enum OPERATE query_one_user(users_head_p head);
+
+// update user's information
+enum OPERATE update_user(users_head_p head);
+
+// convert data to objects todo
 void convert_user(users_head_p head, FILE *user_data);
 
 #endif

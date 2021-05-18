@@ -18,10 +18,13 @@ int main(){
     open_file(USERS_DATA, user_head_pointer);
     USER user = NULL;
     login(user_head_pointer, &user);
-//    while (user != NULL){
-//        printf("%lld %ld %s\n", user->account, user->work_number, user->password);
-//        user = user->next;
-//    }
+
+    query_user(user_head_pointer, TRUE_RES);
+    query_user(user_head_pointer, FALSE_RES);
+    delete_user(user_head_pointer, user);
+    query_user(user_head_pointer, TRUE_RES);
+    update_user(user_head_pointer);
+    query_user(user_head_pointer, TRUE_RES);
 //    char test_uid[24];
 //    create_uid(test_uid);
 //    printf("%s", test_uid);

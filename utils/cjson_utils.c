@@ -91,6 +91,8 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
             return FAILED;
         }
 
+        if (user->USER_ROLE == ADMINISTRATOR) usersHeadP->administrator_number++;
+
         int k = 0, l = 1;
         while (user_password[l] != '\"' && k < 33){
             user->password[k++] = user_password[l++];
