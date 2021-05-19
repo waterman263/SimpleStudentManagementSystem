@@ -19,8 +19,8 @@ typedef struct classes{
     char counsellor_uid[20];
     long class_number;
     char *subject_aver[5][1];
-    float general_aver;
-    float general_gpa;
+    float *general_aver;
+    float *general_gpa;
     enum BOOLEAN_USE HAS_STUDENT_INPUT;
     struct classes *next;
 }classes, *class_p;
