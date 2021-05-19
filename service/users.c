@@ -47,7 +47,6 @@ users_head_p initial_User_List(){
  * @param is_first  whether the first to create user
  * @return  new user
  */
- // todo: optimize function
 USER create_user(users_head_p head, enum BOOLEAN_USE is_first){
 
     // if the pointer has a value, return an error
@@ -105,38 +104,38 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
     // If it is the first time to create a user
     if (is_first == IS_FIRST_USER)
     {
-        printf("This is the first time you create a user, it must be an administrator.\n");
+        printf("==This is the first time you create a user, it must be an administrator.\n");
         user->USER_ROLE = ADMINISTRATOR;
         head->administrator_number++;
-        printf("Please enter your account.It has to be made of pure numbers and the maxsize is 10.\n");
-        printf("In addition, the leading zero of the account will be truncated.\n");
-        printf("If you type more than 10 characters, the extra characters will be truncated.\n");
-        printf("Your account:");
+        printf("==Please enter your account.It has to be made of pure numbers and the maxsize is 10.\n");
+        printf("==In addition, the leading zero of the account will be truncated.\n");
+        printf("==If you type more than 10 characters, the extra characters will be truncated.\n");
+        printf("==Your account:");
         fgets(user_account, 11, stdin);
         fflush(stdin);
 
         while (true) {
             if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
                 user->account = atoll(user_account);
-                printf("OK. There's nothing wrong with your account number.\n");
+                printf("==OK. There's nothing wrong with your account number.\n");
                 break;
             }else {
-                printf("You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
-                printf("Your account:");
+                printf("==You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
+                printf("==Your account:");
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }
         }
 
-        printf("Please enter your password, it consists of letters and numbers and the length is between 6 and 32\n");
-        printf("Your password:");
+        printf("==Please enter your password, it consists of letters and numbers and the length is between 6 and 32\n");
+        printf("==Your password:");
         fgets(password_save, 33, stdin);
         fflush(stdin);
 
         while (true) {
             if (strlen(password_save) == 1){
-                printf("Your password cannot be empty! Please enter your password again.\n");
-                printf("Your password:");
+                printf("==Your password cannot be empty! Please enter your password again.\n");
+                printf("==Your password:");
                 fgets(password_save, 33, stdin);
                 fflush(stdin);
             }
@@ -147,31 +146,32 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
                     password_save++;
                     i++;
                 }
-                printf("OK. There's nothing wrong with your password.\n");
+                user->password[i] = '\0';
+                printf("==OK. There's nothing wrong with your password.\n");
                 break;
             }
             else {
-                printf("You can only enter numbers or letters! Please enter your password again.\n");
-                printf("Your password:");
+                printf("==You can only enter numbers or letters! Please enter your password again.\n");
+                printf("==Your password:");
                 fgets(password_save, 33, stdin);
                 fflush(stdin);
             }
         }
 
-        printf("Please enter your work number.It has to be made of pure numbers and the maxsize is 8.\n");
-        printf("In addition, the leading zero of the work number will be truncated.\n");
-        printf("Your work number:");
+        printf("==Please enter your work number.It has to be made of pure numbers and the maxsize is 8.\n");
+        printf("==In addition, the leading zero of the work number will be truncated.\n");
+        printf("==Your work number:");
         fgets(work_number, 9, stdin);
         fflush(stdin);
 
         while (true) {
             if (check_string(ACCOUNT, user_work_number)==SUCCESS && atol(user_work_number) != 0) {
                 user->work_number = atol(user_work_number);
-                printf("OK. There's nothing wrong with your work number.\n");
+                printf("==OK. There's nothing wrong with your work number.\n");
                 break;
             }else {
-                printf("You can only enter numbers and at least one number other than 0! Please enter your work number again.\n");
-                printf("Your work number:");
+                printf("==You can only enter numbers and at least one number other than 0! Please enter your work number again.\n");
+                printf("==Your work number:");
                 fgets(work_number, 9, stdin);
                 fflush(stdin);
             }
@@ -181,11 +181,11 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
     // if not the first time to create a user
     else if (is_first == NOT_FIRST_USER) {
 
-        printf("Now you are creating a new user, please select his role.\n");
+        printf("==Now you are creating a new user, please select his role.\n");
         _Bool select_right = false;
         while (!select_right) {
             char switch_number = '0';
-            printf("Enter your select: \n");
+            printf("==Enter your select: \n");
             printf("\t\t1: Subject Teacher\t\t\t2: Counsellor\n");
             printf("\t\t3: Guidance director\t\t\t4: Administrator\n");
             scanf("%c",&switch_number);
@@ -193,68 +193,68 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
             switch (switch_number) {
                 case '1':
                     user->USER_ROLE = SUBJECT_TEACHER;
-                    printf("OK, his role will be that of a Subject Teacher.\n");
+                    printf("==OK, his role will be that of a Subject Teacher.\n");
                     select_right = true;
                     break;
                 case '2':
                     user->USER_ROLE = COUNSELLOR;
-                    printf("OK,his role will be that of a Counsellor.\n");
+                    printf("==OK,his role will be that of a Counsellor.\n");
                     select_right = true;
                     break;
                 case '3':
                     user->USER_ROLE = GUIDANCE_DIRECTOR;
-                    printf("OK, his role will be that of a Guidance director.\n");
+                    printf("==OK, his role will be that of a Guidance director.\n");
                     select_right = true;
                     break;
                 case '4':
                     user->USER_ROLE = ADMINISTRATOR;
                     head->administrator_number++;
-                    printf("OK, his role will be that of a Administrator.\n");
+                    printf("==OK, his role will be that of a Administrator.\n");
                     select_right = true;
                     break;
                 default:
-                    printf("You must enter a number between 1 and 4!\n");
-                    printf("Please enter your select again.\n");
+                    printf("==You must enter a number between 1 and 4!\n");
+                    printf("==Please enter your select again.\n");
             }
         }
 
-        printf("Please enter your account.It has to be made of pure numbers and the maxsize is 10.\n");
-        printf("In addition, the leading zero of the account will be truncated.\n");
-        printf("If you type more than 10 characters, the extra characters will be truncated.\n");
-        printf("Your account:");
+        printf("==Please enter your account.It has to be made of pure numbers and the maxsize is 10.\n");
+        printf("==In addition, the leading zero of the account will be truncated.\n");
+        printf("==If you type more than 10 characters, the extra characters will be truncated.\n");
+        printf("==Your account:");
         fgets(user_account, 11, stdin);
         fflush(stdin);
 
         while (true) {
             if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
                 if (check_exist_account(head, atoll(user_account))){
-                    printf("The account you entered already exists, Please enter your account again.\n");
-                    printf("Your account:");
+                    printf("==The account you entered already exists, Please enter your account again.\n");
+                    printf("==Your account:");
                     fgets(user_account, 11, stdin);
                     fflush(stdin);
                     continue;
                 }
                 user->account = atoll(user_account);
-                printf("OK. There's nothing wrong with your account number.\n");
+                printf("==OK. There's nothing wrong with your account number.\n");
                 break;
             }
             else {
-                printf("You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
-                printf("Your account:");
+                printf("==You can only enter numbers and at least one number other than 0! Please enter your account again.\n");
+                printf("==Your account:");
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }
         }
 
-        printf("Please enter your password, it consists of letters and numbers and the maxsize is 32\n");
-        printf("Your password:");
+        printf("==Please enter your password, it consists of letters and numbers and the maxsize is 32\n");
+        printf("==Your password:");
         fgets(password_save, 33, stdin);
         fflush(stdin);
 
         while (true) {
             if (strlen(password_save) == 1){
-                printf("Your password cannot be empty! Please enter your password again.\n");
-                printf("Your password:");
+                printf("==Your password cannot be empty! Please enter your password again.\n");
+                printf("==Your password:");
                 fgets(password_save, 33, stdin);
                 fflush(stdin);
             }
@@ -265,47 +265,48 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
                     password_save++;
                     i++;
                 }
-                printf("OK. There's nothing wrong with your password.\n");
+                user->password[i] = '\0';
+                printf("==OK. There's nothing wrong with your password.\n");
                 break;
             }
             else {
-                printf("You can only enter numbers or letters! Please enter your password again.\n");
-                printf("Your password:");
+                printf("==You can only enter numbers or letters! Please enter your password again.\n");
+                printf("==Your password:");
                 fgets(password_save, 33, stdin);
                 fflush(stdin);
             }
         }
 
-        printf("Please enter your work number.It has to be made of pure numbers and the maxsize is 8.\n");
-        printf("In addition, the leading zero of the work number will be truncated.\n");
-        printf("Your work number:");
+        printf("==Please enter your work number.It has to be made of pure numbers and the maxsize is 8.\n");
+        printf("==In addition, the leading zero of the work number will be truncated.\n");
+        printf("==Your work number:");
         fgets(work_number, 9, stdin);
         fflush(stdin);
 
         while (true) {
             if (check_string(ACCOUNT, user_work_number)==SUCCESS && atol(user_work_number) != 0) {
                 if (check_exist_work_number(head, atol(user_work_number))){
-                    printf("The work number you entered already exists, Please enter your work number again.\n");
-                    printf("Your work number:");
+                    printf("==The work number you entered already exists, Please enter your work number again.\n");
+                    printf("==Your work number:");
                     fgets(work_number, 9, stdin);
                     fflush(stdin);
                     continue;
                 }
                 user->work_number = atol(user_work_number);
-                printf("OK. There's nothing wrong with your work number.\n");
+                printf("==OK. There's nothing wrong with your work number.\n");
                 break;
             }
             else {
-                printf("You can only enter numbers and at least one number other than 0! Please enter your work number again.\n");
-                printf("Your work number:");
+                printf("==You can only enter numbers and at least one number other than 0! Please enter your work number again.\n");
+                printf("==Your work number:");
                 fgets(work_number, 9, stdin);
                 fflush(stdin);
             }
         }
     }
 
-     printf("Please enter your name, it's maxsize is 20\n");
-     printf("Your name:");
+     printf("==Please enter your name, it's maxsize is 20\n");
+     printf("==Your name:");
      fgets(get_name, 20, stdin);
      fflush(stdin);
 
@@ -316,7 +317,7 @@ USER set_user(USER user, users_head_p head, enum BOOLEAN_USE is_first){
          i++;
      }
      user_name[i] = '\0';
-     printf("OK. Now we will return to the menu.\n");
+     printf("==OK. Now we will return to the menu.\n");
 
      return user;
 }
@@ -340,16 +341,23 @@ enum OPERATE delete_user(users_head_p head, USER current_user){
     long long account;
     char user_account[12];
     USER temp_for_check = head->next;
-    printf("Please enter the target account:\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+    printf("==Please enter the target account:\n");
     fgets(user_account, 11, stdin);
     fflush(stdin);
 
     while (true){
-        if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+        if (atoll(user_account) == 0){
+            printf("==OK, returning menu now...\n");
+            return SUCCESS;
+        }
+
+        if (check_string(ACCOUNT, user_account) == SUCCESS) {
             account = atoll(user_account);
             if (current_user->account == account){
-                printf("You cannot delete yourself! Please check the target account!\n");
-                printf("Target account:");
+                printf("==You cannot delete yourself! Please check the target account!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+                printf("==Target account:");
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
                 continue;
@@ -361,15 +369,16 @@ enum OPERATE delete_user(users_head_p head, USER current_user){
             }
 
             if (temp_for_check == NULL){
-                printf("The account is not exist yet, please check the target account!\n");
-                printf("Target account:");
+                printf("==The account is not exist yet, please check the target account!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+                printf("==Target account:");
                 temp_for_check = head->next;
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }else break;
         }else {
-            printf("You can only enter numbers and at least one number other than 0! "
-                   "Please enter the target account again.\n");
+            printf("You can only enter numbers! Please enter the target account again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
             printf("Target account:");
             fgets(user_account, 11, stdin);
             fflush(stdin);
@@ -391,6 +400,9 @@ enum OPERATE delete_user(users_head_p head, USER current_user){
         front_user->next = temp_for_check->next;
         free(temp_for_check);
     }
+
+    printf("==Got it! The user has been deleted successfully!\n");
+    printf("==Returning menu now...\n");
 
     return SUCCESS;
 }
@@ -446,12 +458,17 @@ enum OPERATE query_one_user(users_head_p head){
     long long account;
     char user_account[12];
     USER temp_for_check = head->next;
-    printf("Please enter the target account:\n");
+    printf("==Please enter the target account:\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
     fgets(user_account, 11, stdin);
     fflush(stdin);
 
     while (true){
-        if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+        if (atoll(user_account) == 0){
+            printf("==OK, returning menu now...\n");
+            return SUCCESS;
+        }
+        if (check_string(ACCOUNT, user_account) == SUCCESS) {
             account = atoll(user_account);
             while (temp_for_check != NULL){
                 if (temp_for_check->account == account) break;
@@ -459,15 +476,16 @@ enum OPERATE query_one_user(users_head_p head){
             }
 
             if (temp_for_check == NULL){
-                printf("The account is not exist yet, please check the target account!\n");
-                printf("Target account:");
+                printf("==The account is not exist yet, please check the target account!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+                printf("==Target account:");
                 temp_for_check = head->next;
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }else break;
         }else {
-            printf("You can only enter numbers and at least one number other than 0! "
-                   "Please enter the target account again.\n");
+            printf("==You can only enter numbers! Please enter the target account again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
             printf("Target account:");
             fgets(user_account, 11, stdin);
             fflush(stdin);
@@ -499,12 +517,17 @@ enum OPERATE update_user(users_head_p head){
     long long account;
     char user_account[12];
     USER temp_for_check = head->next;
-    printf("Please enter the target account:\n");
+    printf("==Please enter the target account:\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
     fgets(user_account, 11, stdin);
     fflush(stdin);
 
     while (true){
-        if (check_string(ACCOUNT, user_account) == SUCCESS && atoll(user_account) != 0) {
+        if (atoll(user_account) == 0){
+            printf("==OK, returning menu now...\n");
+            return SUCCESS;
+        }
+        if (check_string(ACCOUNT, user_account) == SUCCESS) {
             account = atoll(user_account);
 
             while (temp_for_check != NULL){
@@ -513,16 +536,17 @@ enum OPERATE update_user(users_head_p head){
             }
 
             if (temp_for_check == NULL){
-                printf("The account is not exist yet, please check the target account!\n");
-                printf("Target account:");
+                printf("==The account is not exist yet, please check the target account!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+                printf("==Target account:");
                 temp_for_check = head->next;
                 fgets(user_account, 11, stdin);
                 fflush(stdin);
             }else break;
         }else {
-            printf("You can only enter numbers and at least one number other than 0! "
-                   "Please enter the target account again.\n");
-            printf("Target account:");
+            printf("==You can only enter numbers! Please enter the target account again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than account.\n");
+            printf("==Target account:");
             fgets(user_account, 11, stdin);
             fflush(stdin);
         }
@@ -700,7 +724,7 @@ enum OPERATE check_account(long long account, char password[], users_head_p head
     }
 
     if (temp_for_check == NULL){
-        printf("The account is not exist yet, please check your account!\n");
+        printf("==The account is not exist yet, please check your account!\n");
         return FAILED;
     }
 
@@ -708,7 +732,7 @@ enum OPERATE check_account(long long account, char password[], users_head_p head
     while (temp_password[i] != '\n') i++;
     temp_password[i] = '\0';
     if (strcmp(temp_for_check->password, password) != 0){
-        printf("Your password is not correct, please check your password!\n");
+        printf("==Your password is not correct, please check your password!\n");
         return FAILED;
     }
     *user = temp_for_check;
