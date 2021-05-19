@@ -26,7 +26,7 @@ enum OPERATE administrator_system(users_head_p head, USER user) {
                identity[user->USER_ROLE+5], user->name);
         printf("\t1.User Functions\t\t2.Grade Functions\n");
         printf("\t3.Class Functions\t\t4.Student Functions\n");
-        printf("\t5.Exit System\n");
+        printf("\t5.Log out\n");
 
         char choice = '0';
         scanf("%c", &choice);
@@ -57,15 +57,123 @@ enum OPERATE administrator_system(users_head_p head, USER user) {
     return SUCCESS;
 }
 enum OPERATE teacher_system(users_head_p head, USER user){
+    printf("==================================================================\n");
+    printf("=========================Teacher Backstage========================\n");
+    printf("==================================================================\n");
+    _Bool choose_function = false;
+    while (!choose_function){
+        printf("==Hello %s %s, you can now choose which functions you want to use.\n",
+               identity[user->USER_ROLE+5], user->name);
+        printf("\t1.View information about your class\t\t2.View your class's score\n");
+        printf("\t3.Update your information\t\t4.View your information\n");
+        printf("\t5.Log out\n");
 
+        char choice = '0';
+        scanf("%c", &choice);
+        fflush(stdin);
+        switch (choice) {
+            case '1':
+                printf("==Moving now...\n");
+                break;
+            case '2':
+                printf("==Moving now...\n");
+                break;
+            case '3':
+                printf("==Moving now...\n");
+                break;
+            case '4':
+                printf("==Moving now...\n");
+                break;
+            case '5':
+                choose_function = true;
+                printf("==Alright. Goodbye %s %s\n", identity[user->USER_ROLE+5], user->name);
+                break;
+            default:
+                printf("==Please enter the correct number!\n");
+        }
+    }
     return SUCCESS;
 }
 enum OPERATE counsellor_system(users_head_p head, USER user){
+    printf("==================================================================\n");
+    printf("========================counselor Backstage=======================\n");
+    printf("==================================================================\n");
+    _Bool choose_function = false;
+    while (!choose_function){
+        printf("==Hello %s %s, you can now choose which functions you want to use.\n",
+               identity[user->USER_ROLE+5], user->name);
+        printf("\t1.View information about your class\t\t2.View your class's score\n");
+        printf("\t3.Update your information\t\t4.View your information\n");
+        printf("\t5.Update your class information\t\t6.Log out\n");
 
+        char choice = '0';
+        scanf("%c", &choice);
+        fflush(stdin);
+        switch (choice) {
+            case '1':
+                printf("==Moving now...\n");
+                break;
+            case '2':
+                printf("==Moving now...\n");
+                break;
+            case '3':
+                printf("==Moving now...\n");
+                break;
+            case '4':
+                printf("==Moving now...\n");
+                break;
+            case '5':
+                printf("==Moving now...\n");
+                break;
+            case '6':
+                choose_function = true;
+                printf("==Alright. Goodbye %s %s\n", identity[user->USER_ROLE+5], user->name);
+                break;
+            default:
+                printf("==Please enter the correct number!\n");
+        }
+    }
     return SUCCESS;
 }
 enum OPERATE guidance_director_system(users_head_p head, USER user){
+    printf("==================================================================\n");
+    printf("====================guidance-director Backstage===================\n");
+    printf("==================================================================\n");
+    _Bool choose_function = false;
+    while (!choose_function){
+        printf("==Hello %s %s, you can now choose which functions you want to use.\n",
+               identity[user->USER_ROLE+5], user->name);
+        printf("\t1.View information about grades\t\t2.View grades' score\n");
+        printf("\t3.Update your information\t\t4.View your information\n");
+        printf("\t5.Update grade information\t\t6.Log out\n");
 
+        char choice = '0';
+        scanf("%c", &choice);
+        fflush(stdin);
+        switch (choice) {
+            case '1':
+                printf("==Moving now...\n");
+                break;
+            case '2':
+                printf("==Moving now...\n");
+                break;
+            case '3':
+                printf("==Moving now...\n");
+                break;
+            case '4':
+                printf("==Moving now...\n");
+                break;
+            case '5':
+                printf("==Moving now...\n");
+                break;
+            case '6':
+                choose_function = true;
+                printf("==Alright. Goodbye %s %s\n", identity[user->USER_ROLE+5], user->name);
+                break;
+            default:
+                printf("==Please enter the correct number!\n");
+        }
+    }
     return SUCCESS;
 }
 

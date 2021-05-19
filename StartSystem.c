@@ -21,6 +21,7 @@ int main(){
     const char roles[4][20] = {"Administrator", "Teacher", "Counsellor", "Guidance-director"};
 
     // login system
+    login:
     while (true){
         char select_login;
         _Bool login_OK = false;
@@ -50,24 +51,21 @@ int main(){
         break;
     }
 
-    enum OPERATE exist_system = FAILED;
     // enter the system corresponding to the role
-    while (exist_system == FAILED){
-        switch (user->USER_ROLE) {
-            case -5:
-                exist_system = administrator_system(user_head_pointer, user);
-                break;
-            case -4:
-                exist_system = teacher_system(user_head_pointer, user);
-                break;
-            case -3:
-                exist_system = counsellor_system(user_head_pointer, user);
-                break;
-            case -2:
-                exist_system = guidance_director_system(user_head_pointer, user);
-                break;
+    switch (user->USER_ROLE) {
+        case -5:
+            administrator_system(user_head_pointer, user);
+            goto login;
+        case -4:
+            teacher_system(user_head_pointer, user);
+            goto login;
+        case -3:
+            counsellor_system(user_head_pointer, user);
+             goto login;
+        case -2:
+            guidance_director_system(user_head_pointer, user);
+            goto login;
         }
-    }
 
     return 0;
 }
