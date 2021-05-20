@@ -49,6 +49,7 @@ enum OPERATE find_counsellor_by_name(counsellor_head_p headP){
             temp_check = temp_check->next;
         }
     }
+    return SUCCESS;
 }
 
 enum OPERATE find_counsellor_by_work_number(counsellor_head_p headP){
@@ -61,13 +62,14 @@ enum OPERATE find_counsellor_by_work_number(counsellor_head_p headP){
         while(temp_check!=NULL){
             if(temp_check->work_number == atol(accounts)){
                 printf("%s",temp_check->name);
-                printf("%s",temp_check->work_number);
+                printf("%ld",temp_check->work_number);
                 printf("%s",temp_check->phone_number);
                 printf("%s",temp_check->email);
             }
             temp_check = temp_check->next;
         }
     }
+    return SUCCESS;
 }
 enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
     if(select == NAME )  return delete_counsellor_by_name(headP);
@@ -91,6 +93,7 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
              temp_check->next;
          }
      }
+     return  SUCCESS;
  }
 
 
@@ -111,6 +114,7 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
              temp_check->next;
          }
      }
+     return  SUCCESS;
  }
 
 
@@ -130,12 +134,36 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
          }
          if(temp_check == NULL){
              counsellor_p new_counsellor = (counsellor_p)malloc(sizeof(counsellor_p));
-             scanf("%s",new_counsellor->name);
-             scanf("%ld",new_counsellor->work_number);
-             scanf("%s",new_counsellor->phone_number);
+             printf("请输入姓名：");
+             char counsellor_name_add[20];
+             char *accounts_name=counsellor_name_add;
+             fgets(accounts_name, 11, stdin);
+             fflush(stdin);
+             if(check_string(ACCOUNT, counsellor_name_add) == SUCCESS && atoll(counsellor_name_add) != 0) {
+                 scanf("%s",new_counsellor->name);
+             }
+             printf("请输入工号：");
+             char counsellor_work_number_add[20];
+             char *accounts_work_number=counsellor_work_number_add;
+             fgets(accounts_work_number, 11, stdin);
+             fflush(stdin);
+             if(check_string(ACCOUNT, counsellor_work_number_add) == SUCCESS && atoll(counsellor_work_number_add) != 0) {
+                 scanf("%ld",&new_counsellor->work_number);
+             }
+             printf("请输入电话：");
+             char counsellor_phone_number_add[20];
+             char *accounts_phone_number=counsellor_phone_number_add;
+             fgets(accounts_phone_number, 11, stdin);
+             fflush(stdin);
+             if(check_string(ACCOUNT, counsellor_phone_number_add) == SUCCESS && atoll(counsellor_phone_number_add) != 0) {
+                 scanf("%s",new_counsellor->phone_number);
+             }
+             //   email 函数//
              scanf("%s",new_counsellor->email);
+             //            //
          }
      }
+     return SUCCESS;
  }
 
 
@@ -154,19 +182,38 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
                  switch(choose){
                      case 1:
                          printf("请输入您要修改的名字：");
-                         scanf("%s",temp_check->name);
+                         char counsellor_name_chg[20];
+                         char *accounts_name=counsellor_name_chg;
+                         fgets(accounts_name, 11, stdin);
+                         fflush(stdin);
+                         if(check_string(ACCOUNT, counsellor_name_chg) == SUCCESS && atoll(counsellor_name_chg) != 0) {
+                             scanf("%s",temp_check->name);
+                         }
                          break;
                      case 2:
-                         printf("请输入您要修改的");
-                         scanf("%s",temp_check->phone_number);
+                         printf("请输入您要修改的电话：");
+                         char counsellor_phone_number_chg[20];
+                         char *accounts_phone_number=counsellor_phone_number_chg;
+                         fgets(accounts_phone_number, 11, stdin);
+                         fflush(stdin);
+                         if(check_string(ACCOUNT, counsellor_phone_number_chg) == SUCCESS && atoll(counsellor_phone_number_chg) != 0) {
+                             scanf("%s",temp_check->phone_number);
+                         }
                          break;
                      case 3:
-                         printf("请输入您要修改的");
-                         scanf("%ld",temp_check->work_number);
+                         printf("请输入您要修改的工号：");
+                         char *accounts_work_number=counsellor_work_number;
+                         fgets(accounts_work_number, 11, stdin);
+                         fflush(stdin);
+                             if(check_string(ACCOUNT, counsellor_work_number) == SUCCESS && atoll(counsellor_work_number) != 0) {
+                             scanf("%ld",&temp_check->work_number);
+                         }
                          break;
                      case 4:
                          printf("请输入您能想要修改的地址");
+                         //email   函数//
                          scanf("%s",temp_check->email);
+                         //          //
                      default :
                          printf("请输入正确的选项\n");
                          break;
@@ -174,5 +221,6 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
              }
          }
      }
+     return SUCCESS;
  }
 

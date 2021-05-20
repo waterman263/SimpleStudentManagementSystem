@@ -20,8 +20,7 @@
 #define STUDENT_H
 #include "classes.h"
 
-typedef struct student_service
-{
+typedef struct student{
     char uid[24];
     char class_uid[20];
     long long student_number;
@@ -29,14 +28,13 @@ typedef struct student_service
     char email[33];
     char phone_number[12];
     float subject_score[5][1];
-    const char *average_score;
     float gpa;
     enum BOOLEAN_USE HAS_SCORE_INPUT;
-    struct student_service *next;
+    struct student *next;
 }student, *student_p;
 
 typedef struct student_head_pointer{
-    struct student_service *next;
+    struct student *next;
 }student_head_p, *stu_head_p;
 
 #endif //_STUDENT_H

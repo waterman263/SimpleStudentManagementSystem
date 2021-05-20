@@ -17,16 +17,16 @@ enum SELECT{
     ONE,
     ALL
 };
-enum OPERATE find_class(classes_head_p headP, enum SELECT select);
-enum OPERATE find_class_one(classes_head_p headP);
-enum OPERATE find_class_all(classes_head_p  headP);
+enum OPERATE find_class(class_head_p headP, enum SELECT select);
+enum OPERATE find_class_one(class_head_p headP);
+enum OPERATE find_class_all(class_head_p  headP);
 
 
 
-enum OPERATE delete_class(classes_head_p headP);
+enum OPERATE delete_class(class_head_p headP);
 
-enum OPERATE add_class(classes_head_p headP);
+enum OPERATE add_class(class_head_p headP);
 
-enum OPERATE chg_class(classes_head_p headP);
+enum OPERATE chg_class(class_head_p headP);
 
 #endif //CODEFIELD_CLASS_SERVICE_H

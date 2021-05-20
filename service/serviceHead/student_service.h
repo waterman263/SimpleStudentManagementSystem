@@ -20,27 +20,21 @@ enum SELECT{
     ALL
 };
 
-enum OPERATE find_student(student_head_p headP, enum SELECT select);
-enum OPERATE find_student_by_number(student_head_p headP);
-enum OPERATE find_student_by_name(student_head_p headP);
-enum OPERATE find_student_all(student_head_p headP);
+enum OPERATE find_student(stu_head_p headP, enum SELECT select);
+enum OPERATE find_student_by_number(stu_head_p headP);
+enum OPERATE find_student_by_name(stu_head_p headP);
+enum OPERATE find_student_all(stu_head_p headP);
 
 
 
-enum OPERATE delete_student(student_head_p headP, enum SELECT select);
-enum OPERATE delete_student_by_number(student_head_p headP);
-enum OPERATE delete_student_by_name(student_head_p headP);
+enum OPERATE delete_student(stu_head_p headP, enum SELECT select);
+enum OPERATE delete_student_by_number(stu_head_p headP);
+enum OPERATE delete_student_by_name(stu_head_p headP);
 
-enum OPERATE add_student(student_head_p headP);
+enum OPERATE add_student(stu_head_p headP);
 
-enum OPERATE chg_student(student_head_p headP,enum SELECT select);
-enum OPERATE chg_student_by_number(student_head_p headP,enum SELECT);
-enum OPERATE chg_student_by_name(student_head_p headP,enum SELECT);
-enum OPERATE chg_student_by(student_head_p headP,enum SELECT select);
-enum OPERATE chg_student_name(student_head_p headP);
-enum OPERATE chg_student_number(student_head_p headP);
-enum OPERATE chg_student_phone(student_head_p headP);
-enum OPERATE chg_student_score_one(student_head_p headP);
-enum OPERATE chg_student_score(student_head_p headP);
-enum OPERATE chg_student_gpa(student_head_p headP);
+enum OPERATE chg_student(stu_head_p headP,enum SELECT select);
+enum OPERATE chg_student_by_number(stu_head_p headP,enum SELECT);
+enum OPERATE chg_student_by_name(stu_head_p headP,enum SELECT);
+
 #endif //CODEFIELD_STUDENT_SERVICE_H
