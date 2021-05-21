@@ -15,14 +15,14 @@
 
 
 
-void  input_information(stu_head_p headP, char accounts) {
+void  input_information(stu_head_p headP, char *accounts) {
 
     student_p temp_check = headP->next;
-    while (strcmp(temp_check->name, &accounts) == 0) {
+    while (strcmp(temp_check->name, accounts) == 0) {
         printf("请输入要修改的姓名：");
         char student_name_chg[12];
-        char *accounts_name = student_name_chg;
-        fgets(accounts_name, 11, stdin);
+        char *date_name = student_name_chg;
+        fgets(date_name, 13, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_name_chg) == SUCCESS) {
             strcpy(student_name_chg, temp_check->name);
@@ -33,8 +33,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的电话：");
         char student_phone_number_chg[12];
-        char *accounts_phone_number = student_phone_number_chg;
-        fgets(accounts_phone_number, 12, stdin);
+        char *date_phone_number = student_phone_number_chg;
+        fgets(date_phone_number, 13, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_phone_number_chg) == SUCCESS && atoll(student_phone_number_chg) != 0) {
             strcpy(student_phone_number_chg, temp_check->phone_number);
@@ -45,8 +45,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的学号：");
         char student_number_chg[20];
-        char *accounts_student_number = student_number_chg;
-        fgets(accounts_student_number, 20, stdin);
+        char *date_student_number = student_number_chg;
+        fgets(date_student_number, 21, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_number_chg) == SUCCESS && atoll(student_number_chg) != 0) {
             temp_check->student_number = atoll(student_number_chg);
@@ -58,8 +58,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的高数成绩：");
         char student_math_chg[8];
-        char *accounts_math = student_math_chg;
-        fgets(accounts_math, 8, stdin);
+        char *date_math = student_math_chg;
+        fgets(date_math, 9, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_math_chg) == SUCCESS) {
             temp_check->subject_score[ADVANCED_MATHEMATICS][0] = atof(student_math_chg);
@@ -70,8 +70,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的英语成绩：");
         char student_english_chg[8];
-        char *accounts_english = student_english_chg;
-        fgets(accounts_english, 8, stdin);
+        char *date_english = student_english_chg;
+        fgets(date_english, 9, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_english_chg) == SUCCESS) {
             temp_check->subject_score[ENGLISH][0] = atof(student_english_chg);
@@ -83,8 +83,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的C语言成绩：");
         char student_c_chg[8];
-        char *accounts_c = student_c_chg;
-        fgets(accounts_c, 8, stdin);
+        char *date_c = student_c_chg;
+        fgets(date_c, 9, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_c_chg) == SUCCESS) {
             temp_check->subject_score[C_PROGRAM_LANGUAGE][0] = atof(student_c_chg);
@@ -95,8 +95,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的物理成绩：");
         char student_physics_chg[20];
-        char *accounts_physics = student_physics_chg;
-        fgets(accounts_physics, 11, stdin);
+        char *date_physics = student_physics_chg;
+        fgets(date_physics, 21, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_physics_chg) == SUCCESS) {
             temp_check->subject_score[PHYSICAL_EDUCATION][0] = atof(student_physics_chg);
@@ -108,8 +108,8 @@ void  input_information(stu_head_p headP, char accounts) {
         }
         printf("请输入要修改的python成绩：");
         char student_python_chg[20];
-        char *accounts_python = student_python_chg;
-        fgets(accounts_python, 11, stdin);
+        char *date_python = student_python_chg;
+        fgets(date_python, 21, stdin);
         fflush(stdin);
         if (check_string(ACCOUNT, student_python_chg) == SUCCESS && atoll(student_python_chg) != 0) {
             temp_check->subject_score[PYTHON][0] = atof(student_python_chg);
@@ -121,7 +121,7 @@ void  input_information(stu_head_p headP, char accounts) {
         }
     }
 }
-stu_head_p  initial_student_List(stu_head_p headP){
+stu_head_p  initial_student_List(){
     stu_head_p head_point = (stu_head_p)malloc(sizeof(stu_head_p));
     if(head_point == NULL)
     {
@@ -171,13 +171,13 @@ enum OPERATE find_student(stu_head_p headP , enum  SELECT select){
 
 enum OPERATE find_student_by_number(stu_head_p headP ){
     char student_number[20];
-    char *accounts = student_number;
-    fgets(accounts, 20, stdin);
+    char *date = student_number;
+    fgets(date, 21, stdin);
     fflush(stdin);
     student_p temp_check = headP ->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS && atoll(student_number) != 0){
+    if(check_string(ACCOUNT, date) == SUCCESS && atoll(student_number) != 0){
         while(temp_check != NULL){
-            if(temp_check -> student_number == atoll(accounts)==0){
+            if(temp_check -> student_number == atoll(date)==0){
                 printf("姓名：%s  \n", temp_check->name);
                 printf("邮箱：%s  \n", temp_check->email);
                 printf("电话：%s  \n", temp_check->phone_number);
@@ -193,6 +193,8 @@ enum OPERATE find_student_by_number(stu_head_p headP ){
             }
         }
     else{
+        printf("Wrong number!");
+        printf("Input against");
         return find_student_by_number(headP);
     }
     return SUCCESS;
@@ -214,13 +216,13 @@ enum OPERATE find_student_by_number(stu_head_p headP ){
 
 enum OPERATE find_student_by_name(stu_head_p headP ){
     char student_name[12];
-    char *accounts = student_name;
-    fgets(accounts, 12, stdin);
+    char *date = student_name;
+    fgets(date, 13, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS ){
+    if(check_string(ACCOUNT, date) == SUCCESS ){
         while(temp_check != NULL){
-            if(strcmp(temp_check -> name , accounts)){
+            if(strcmp(temp_check -> name , date)){
                 printf("姓名：%s  \n", temp_check->name);
                 printf("邮箱：%s  \n", temp_check->email);
                 printf("电话：%s  \n", temp_check->phone_number);
@@ -236,6 +238,8 @@ enum OPERATE find_student_by_name(stu_head_p headP ){
         }
     }
     else{
+        printf("Wrong number!");
+        printf("Input against");
         return find_student_by_name(headP);
     }
     return SUCCESS;
@@ -309,23 +313,27 @@ enum OPERATE delete_student(stu_head_p headP, enum SELECT select){
 
 enum OPERATE delete_student_by_number(stu_head_p headP ){
     char student_number[20];
-    char *accounts = student_number;
-    fgets(accounts, 20, stdin);
+    char *date = student_number;
+    fgets(date, 21, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
     student_p temp_check_ano = headP->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS && atoll(student_number) != 0){
-        while(temp_check != NULL){
-            temp_check = temp_check_ano;
-            temp_check = temp_check -> next;
-            if(temp_check->student_number == atoll(accounts) ){
-                temp_check_ano->next = temp_check->next;
-                free(temp_check);
-                break;
+    if(check_string(ACCOUNT, date) == SUCCESS && atoll(student_number) != 0){
+        while(temp_check_ano->next != NULL) {
+            while (temp_check != NULL) {
+                temp_check_ano = temp_check;
+                temp_check = temp_check_ano->next;
+                if (temp_check->student_number == atol(date)) {
+                    temp_check_ano->next = temp_check->next;
+                    free(temp_check);
+                    break;
+                }
             }
         }
     }
     else{
+        printf("Wrong number!");
+        printf("Input against");
         return delete_student_by_number(headP);
     }
     return SUCCESS;
@@ -346,23 +354,27 @@ enum OPERATE delete_student_by_number(stu_head_p headP ){
 */
 enum OPERATE delete_student_by_name(stu_head_p headP ){
     char student_name[20];
-    char *accounts = student_name;
-    fgets(accounts, 20, stdin);
+    char *date = student_name;
+    fgets(date, 21, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
     student_p temp_check_ano = headP->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS ){
-        while(temp_check != NULL){
-            temp_check_ano = temp_check;
-            temp_check = temp_check->next;
-            if(strcmp(temp_check->name, accounts) == 0){
-                temp_check_ano->next = temp_check->next;
-                free(temp_check);
-                break;
+    if(check_string(ACCOUNT, date) == SUCCESS ){
+        while(temp_check_ano->next != NULL) {
+            while (temp_check != NULL) {
+                temp_check_ano = temp_check;
+                temp_check = temp_check_ano->next;
+                if (strcmp(temp_check->name,date) == 0) {
+                    temp_check_ano->next = temp_check->next;
+                    free(temp_check);
+                    break;
+                }
             }
         }
     }
     else{
+        printf("Wrong number!");
+        printf("Input against");
         return delete_student_by_name(headP);
     }
     return SUCCESS;
@@ -383,13 +395,13 @@ enum OPERATE delete_student_by_name(stu_head_p headP ){
 */
 enum OPERATE add_student(stu_head_p headP){
     char student_number[20];
-    char *accounts = student_number;
-    fgets(accounts, 20, stdin);
+    char *date = student_number;
+    fgets(date, 21, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS && atoll(student_number) != 0){
+    if(check_string(ACCOUNT, date) == SUCCESS && atoll(student_number) != 0){
     while(temp_check != NULL){
-        if(temp_check->student_number == atoll(accounts)){
+        if(temp_check->student_number == atoll(date)){
             printf("This student saved!");
             break;
     }
@@ -399,8 +411,8 @@ enum OPERATE add_student(stu_head_p headP){
         student_p new_student = (student_p)malloc(sizeof(student_p));
         printf("请输入姓名：");
         char student_name_save[12];
-        char *accounts_name=student_name_save;
-        fgets(accounts_name, 12, stdin);
+        char *date_name=student_name_save;
+        fgets(date_name, 13, stdin);
         fflush(stdin);
         while(true) {
             if (check_string(ACCOUNT, student_name_save) == SUCCESS) {
@@ -412,8 +424,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入学号：");
             char student_number_save[20];
-            char *accounts_number = student_number_save;
-            fgets(accounts_number, 20, stdin);
+            char *date_number = student_number_save;
+            fgets(date_number, 21, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_number_save) == SUCCESS && atoll(student_number_save) != 0) {
                 new_student->student_number = atoll(student_number_save);
@@ -427,8 +439,8 @@ enum OPERATE add_student(stu_head_p headP){
             //           //
             printf("请输入电话号码：");
             char student_phone_number_save[12];
-            char *accounts_phone_number = student_phone_number_save;
-            fgets(accounts_phone_number, 12, stdin);
+            char *date_phone_number = student_phone_number_save;
+            fgets(date_phone_number, 13, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_phone_number_save) == SUCCESS) {
                 strcmp(new_student->phone_number, student_phone_number_save);
@@ -439,8 +451,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入高数成绩：");
             char student_math_save[8];
-            char *accounts_math = student_math_save;
-            fgets(accounts_math, 8, stdin);
+            char *date_math = student_math_save;
+            fgets(date_math, 9, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_math_save) == SUCCESS) {
                 new_student->subject_score[ADVANCED_MATHEMATICS][0] = atof(student_math_save);
@@ -451,8 +463,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入英语成绩：");
             char student_english_save[8];
-            char *accounts_english = student_english_save;
-            fgets(accounts_english, 8, stdin);
+            char *date_english = student_english_save;
+            fgets(date_english, 9, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_english_save) == SUCCESS) {
                 new_student->subject_score[ENGLISH][0] = atof(student_english_save);
@@ -463,8 +475,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入C语言成绩：");
             char student_c_save[20];
-            char *accounts_c = student_c_save;
-            fgets(accounts_c, 11, stdin);
+            char *date_c = student_c_save;
+            fgets(date_c, 21, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_c_save) == SUCCESS) {
                 new_student->subject_score[C_PROGRAM_LANGUAGE][0] = atof(student_english_save);
@@ -475,8 +487,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入物理成绩：");
             char student_physics_save[20];
-            char *accounts_physics = student_physics_save;
-            fgets(accounts_physics, 11, stdin);
+            char *date_physics = student_physics_save;
+            fgets(date_physics, 21, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_physics_save) == SUCCESS) {
                 new_student->subject_score[PHYSICAL_EDUCATION][0] = atof(student_physics_save);
@@ -487,8 +499,8 @@ enum OPERATE add_student(stu_head_p headP){
             }
             printf("请输入python成绩：");
             char student_python_save[20];
-            char *accounts_python = student_python_save;
-            fgets(accounts_python, 11, stdin);
+            char *date_python = student_python_save;
+            fgets(date_python, 21, stdin);
             fflush(stdin);
             if (check_string(ACCOUNT, student_python_save) == SUCCESS) {
                 new_student->subject_score[PYTHON][0] = atof(student_python_save);
@@ -501,6 +513,11 @@ enum OPERATE add_student(stu_head_p headP){
         }
     }
 }
+    else{
+        printf("Wrong number!");
+        printf("Input against");
+        return add_student(headP);
+    }
     return SUCCESS;
 }
 
@@ -540,17 +557,19 @@ enum OPERATE chg_student(stu_head_p headP,enum SELECT select){
 */
 enum OPERATE chg_student_by_name(stu_head_p headP){
     char student_name[12];
-    char *accounts = student_name;
-    fgets(accounts, 11, stdin);
+    char *date = student_name;
+    fgets(date, 13, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
-    if(check_string(ACCOUNT, accounts) == SUCCESS ){
+    if(check_string(ACCOUNT, date) == SUCCESS ){
         while(temp_check != NULL){
-            input_information(headP,*accounts);
+            input_information(headP,date);
             temp_check = temp_check->next;
         }
     }
     else{
+        printf("Wrong number!");
+        printf("Input against");
         return chg_student_by_name(headP);
     }
 
@@ -573,15 +592,20 @@ enum OPERATE chg_student_by_name(stu_head_p headP){
 */
 enum OPERATE chg_student_by_number(stu_head_p headP){
     char student_number[20];
-    char *accounts=student_number;
-    fgets(accounts, 11, stdin);
+    char *date=student_number;
+    fgets(date, 21, stdin);
     fflush(stdin);
     student_p temp_check = headP->next;
     if(check_string(ACCOUNT, student_number) == SUCCESS && atoll(student_number) != 0){
         while(temp_check!= NULL){
-            input_information(headP,*accounts);
+            input_information(headP, date);
             temp_check = temp_check->next;
         }
+    }
+    else{
+        printf("Wrong number!");
+        printf("Input against");
+        return chg_student_by_number(headP);
     }
     return SUCCESS;
 }
