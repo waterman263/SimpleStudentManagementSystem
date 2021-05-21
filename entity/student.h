@@ -1,5 +1,5 @@
 /**
- * @file student.h
+ * @file student_service.h
  * @author @waterman263
  * @brief 学生的结构体（所属班级（指针）
 	 		  学号（唯一）
@@ -20,15 +20,14 @@
 #define STUDENT_H
 #include "classes.h"
 
-typedef struct student
-{
+typedef struct student{
     char uid[24];
     char class_uid[20];
+    long long student_number;
     char name[20];
     char email[33];
     char phone_number[12];
     float subject_score[5][1];
-    float average_score;
     float gpa;
     enum BOOLEAN_USE HAS_SCORE_INPUT;
     struct student *next;
