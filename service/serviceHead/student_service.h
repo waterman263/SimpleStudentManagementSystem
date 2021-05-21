@@ -34,7 +34,7 @@ enum OPERATE delete_student_by_name(stu_head_p headP);
 enum OPERATE add_student(stu_head_p headP);
 
 enum OPERATE chg_student(stu_head_p headP,enum SELECT select);
-enum OPERATE chg_student_by_number(stu_head_p headP,enum SELECT);
-enum OPERATE chg_student_by_name(stu_head_p headP,enum SELECT);
+enum OPERATE chg_student_by_number(stu_head_p headP);
+enum OPERATE chg_student_by_name(stu_head_p headP);
 
 #endif //CODEFIELD_STUDENT_SERVICE_H
