@@ -11,10 +11,11 @@
 // todo: finish cjson_utils
 #ifndef CJSON_UTILS_H
 #define CJSON_UTILS_H
-#include "service/serviceHead/users.h"
+#include "service/serviceHead/users_service.h"
 #include "cJSON.h"
 
 
 enum OPERATE parsing_user_data(char *json_data, void *struct_pointer);
+enum OPERATE save_user_data(char *target_data, void *struct_pointer);
 
 #endif //CJSON_UTILS_H

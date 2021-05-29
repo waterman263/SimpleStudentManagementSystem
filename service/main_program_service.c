@@ -189,7 +189,7 @@ enum OPERATE users_function(users_head_p head, USER user){
         printf("==What would you like to do next? \n");
         printf("\t1.Create a new user\t\t2.Query Users\n");
         printf("\t3.Update user information\t\t4.Delete user\n");
-        printf("\t5.Back to the previous System\n");
+        printf("\t6.Back to the previous System\n");
 
         scanf("%c", &choice);
         fflush(stdin);
@@ -222,8 +222,17 @@ enum OPERATE users_function(users_head_p head, USER user){
                 delete_user(head, user);
                 break;
             case '5':
+                printf("==Saving...Please hold on...\n");
+                save_file(USERS_DATA, head);
+                printf("==OK, the data was saved successfully.\n");
+                break;
+
+            case '6':
                 exist_system = true;
-                printf("==Got it! Goodbye %s %s\n", identity[user->USER_ROLE+5], user->name);
+                printf("==Got it! The system will save your work now, please hold on...\n");
+                save_file(USERS_DATA, head);
+                printf("==OK, the data was saved successfully.\n");
+                printf("==Goodbye %s %s\n", identity[user->USER_ROLE+5], user->name);
                 break;
             default:
                 printf("==Please enter the correct number!\n");

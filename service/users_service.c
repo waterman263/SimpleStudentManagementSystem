@@ -9,7 +9,7 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#include "serviceHead/users.h"
+#include "serviceHead/users_service.h"
 
 
 /**
@@ -464,11 +464,12 @@ enum OPERATE query_one_user(users_head_p head){
     fflush(stdin);
 
     while (true){
-        if (atoll(user_account) == 0){
-            printf("==OK, returning menu now...\n");
-            return SUCCESS;
-        }
         if (check_string(ACCOUNT, user_account) == SUCCESS) {
+            if (atoll(user_account) == 0){
+                printf("==OK, returning menu now...\n");
+                return SUCCESS;
+            }
+
             account = atoll(user_account);
             while (temp_for_check != NULL){
                 if (temp_for_check->account == account) break;

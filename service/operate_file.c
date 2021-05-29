@@ -59,7 +59,24 @@ enum OPERATE open_file(enum FILE_TYPE file_type, void *struct_pointer){
     return SUCCESS;
 }
 
+enum OPERATE save_file(enum FILE_TYPE file_type, void *struct_pointer){
+    char *path;
+    if (file_type == USERS_DATA){
+        path = USER_DATA;
+    }
 
+    char data[1001000];
+    char *target_data = data;
+    FILE *file = fopen(path, "wt");
+
+    save_file_data(file_type, target_data, struct_pointer);
+    printf("%s", target_data);
+    fputs(data, file);
+
+    fclose(file);
+
+    return SUCCESS;
+}
 
 
 
@@ -70,7 +87,16 @@ enum OPERATE read_file_data(enum FILE_TYPE file_type, char *json_data, void *str
 }
 
 enum OPERATE parsing_users_data(char *json_data, void *struct_pointer){
-    if (parsing_user_data(json_data, struct_pointer) == FAILED) return FAILED;
-    return SUCCESS;
+    return parsing_user_data(json_data, struct_pointer);
+}
+
+enum OPERATE save_file_data(enum FILE_TYPE file_type, char  *target_data, void *struct_pointer){
+    if (file_type == USERS_DATA) return save_users_data(target_data, struct_pointer);
+
+    else return FAILED;
+}
+
+enum OPERATE save_users_data(char *target_data, void *struct_pointer){
+    return save_user_data(target_data, struct_pointer);
 }
 

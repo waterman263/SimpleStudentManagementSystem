@@ -10,7 +10,7 @@
  */
 #ifndef MAIN_PROGRAM_SERVICE_H
 #define MAIN_PROGRAM_SERVICE_H
-#include "users.h"
+#include "users_service.h"
 
 enum OPERATE login_account(users_head_p head, USER *user);
 
