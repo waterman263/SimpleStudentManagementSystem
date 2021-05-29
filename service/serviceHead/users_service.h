@@ -66,7 +66,4 @@ enum OPERATE query_one_user(users_head_p head);
 // update user's information
 enum OPERATE update_user(users_head_p head);
 
-// convert data to objects todo
-void convert_user(users_head_p head, FILE *user_data);
-
 #endif

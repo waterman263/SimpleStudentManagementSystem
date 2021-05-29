@@ -32,6 +32,9 @@ enum OPERATE check_string(int string_type, char *string){
     // at == @
     _Bool is_at = false;
 
+    // point == .
+    _Bool is_point = false;
+
     if (string_type == PASSWORD )
     {
         // check check_target when it is password
@@ -46,7 +49,6 @@ enum OPERATE check_string(int string_type, char *string){
             }else {
                 return FAILED;
             }
-
         }   
     }
 
@@ -61,6 +63,77 @@ enum OPERATE check_string(int string_type, char *string){
                 return FAILED;
             }
         }
+    }
+
+    if (string_type == EMAIL) {
+        // check check_target when it is email
+        // ep: eh123q.top@email.com
+        // no validation is done on the domain name, only basic length validation is done
+        int len = 0;
+        while (*check_target != '@' && *check_target != '\n') {
+            is_lowercase_letter = (*check_target >= 'a') && (*check_target <= 'z');
+            is_uppercase_letter = (*check_target >= 'A') && (*check_target <= 'Z');
+            is_number = (*check_target >= '0') && (*check_target <= '9');
+            is_point = *check_target == '.';
+
+            if (is_lowercase_letter || is_uppercase_letter || is_number || is_point){
+                len++;
+                if (len > 28) return FAILED;
+                check_target++;
+            }else {
+                return FAILED;
+            }
+        }
+
+        if (*check_target == '@') check_target++;
+        else return FAILED;
+
+        while (*check_target != '.' && *check_target != '\n'){
+            is_lowercase_letter = (*check_target >= 'a') && (*check_target <= 'z');
+            is_uppercase_letter = (*check_target >= 'A') && (*check_target <= 'Z');
+            is_number = (*check_target >= '0') && (*check_target <= '9');
+
+            if (is_lowercase_letter || is_uppercase_letter || is_number){
+                len++;
+                if (len > 30) return FAILED;
+                check_target++;
+            }else {
+                return FAILED;
+            }
+        }
+
+        if (*check_target == '.') check_target++;
+        else return FAILED;
+
+        while (*check_target != '\0' && *check_target != '\n') {
+            is_lowercase_letter = (*check_target >= 'a') && (*check_target <= 'z');
+            is_uppercase_letter = (*check_target >= 'A') && (*check_target <= 'Z');
+            is_number = (*check_target >= '0') && (*check_target <= '9');
+
+            if (is_lowercase_letter || is_uppercase_letter || is_number){
+                check_target++;
+            }else {
+                return FAILED;
+            }
+        }
+    }
+
+    if (string_type == TELEPHONE_NUMBER) {
+        // check check_target when it is phone_number
+        // phone_number must be number and its length must be 11
+        int len = 0;
+        while (*check_target != '\0' && *check_target != '\n') {
+            is_number = (*check_target >= '0') && (*check_target <= '9');
+            if (is_number) {
+                len++;
+                if (len > 11) return FAILED;
+                check_target++;
+            }else {
+                return FAILED;
+            }
+        }
+
+        if (len != 11) return FAILED;
     }
     return SUCCESS;
 }

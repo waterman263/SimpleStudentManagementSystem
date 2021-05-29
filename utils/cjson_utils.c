@@ -131,3 +131,56 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
     }
     return SUCCESS;
 }
+
+enum OPERATE save_user_data(char *target_data, void *struct_pointer){
+    users_head_p usersHeadP = (users_head_p) struct_pointer;
+    USER temp_user = usersHeadP->next;
+
+    cJSON *root = NULL;
+    cJSON *users_array = NULL;
+    cJSON *users = NULL;
+    cJSON *user_name = NULL;
+    cJSON *user_work_number = NULL;
+    cJSON *user_account = NULL;
+    cJSON *user_role = NULL;
+    cJSON *user_password = NULL;
+
+    root = cJSON_CreateObject();
+
+    users_array = cJSON_CreateArray();
+    cJSON_AddItemToObject(root, "users", users_array);
+
+    while (temp_user != NULL){
+        users = cJSON_CreateObject();
+        cJSON_AddItemToArray(users_array, users);
+
+        printf("%s ", temp_user->name);
+        user_name = cJSON_CreateString(temp_user->name);
+        cJSON_AddItemToObject(users, "name", user_name);
+
+        printf("%lld ", temp_user->account);
+        char account[12];
+        char *temp_account = account;
+        lltoa(temp_user->account, temp_account, 10);
+        user_account = cJSON_CreateNumber(temp_user->account);
+        cJSON_AddItemToObject(users, "account",user_account);
+
+        printf("%s ", temp_user->password);
+        user_password = cJSON_CreateString(temp_user->password);
+        cJSON_AddItemToObject(users, "password", user_password);
+
+        printf("%ld ", temp_user->work_number);
+        user_work_number = cJSON_CreateNumber(temp_user->work_number);
+        cJSON_AddItemToObject(users, "work_number", user_work_number);
+
+        printf("%d ", temp_user->USER_ROLE);
+        user_role = cJSON_CreateNumber(temp_user->USER_ROLE);
+        cJSON_AddItemToObject(users, "user_role", user_role);
+
+        temp_user = temp_user->next;
+    }
+
+    //printf("\n%s\n", cJSON_Print(root));
+    strcpy(target_data, cJSON_Print(root));
+    return SUCCESS;
+}
