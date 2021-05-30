@@ -30,7 +30,7 @@
 
 
 /**
- * @file users.c
+ * @file class_service.c
  * @author @waterman263
  * @brief    find information of class
  * @version 0.1
@@ -50,7 +50,7 @@ enum OPERATE find_class(class_head_p headP,enum SELECT select){
 
 
 /**
- * @file users.c
+ * @file class_service.c
  * @author @waterman263
  * @brief    find information of one class
  * @version 0.1
@@ -124,6 +124,7 @@ enum OPERATE find_class_one(class_head_p headP){
 
 
 /**
+ * * @file class_service.c
  * @author @waterman263
  * @brief    find information of all class
  * @version 0.1
@@ -160,7 +161,7 @@ enum OPERATE find_class_all(class_head_p headP){
 
 
 /**
- * @file users.c
+ * @file class_service.c
  * @author @waterman263
  * @brief    delete information of class
  * @version 0.1
@@ -244,7 +245,7 @@ enum OPERATE delete_class(class_head_p headP){
 
 
 /**
- * @file users.c
+ * @file class_service.c
  * @author @waterman263
  * @brief    add information of class
  * @version 0.1
@@ -316,7 +317,7 @@ enum OPERATE add_class(class_head_p headP){
 }
 
 /**
- * @file users.c
+ * @file class_service.c
  * @author @waterman263
  * @brief    change information of class
  * @version 0.1
