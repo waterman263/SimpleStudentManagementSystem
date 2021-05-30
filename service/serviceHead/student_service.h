@@ -8,7 +8,7 @@
 #include "setting.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "serviceHead/operate_file.h"
+#include "operate_file.h"
 #include "entity/student.h"
 enum SELECT{
     NUMBER,

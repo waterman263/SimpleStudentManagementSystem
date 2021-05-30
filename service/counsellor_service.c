@@ -13,56 +13,6 @@
 //
 #include "serviceHead/counsellor_service.h"
 
-void input_chg_information(counsellor_head_p headP,char *date) {
-    counsellor_p temp_check = headP->next;
-    if(temp_check->work_number == atol(date)) {
-        while (true) {
-            printf("请输入修改后的姓名：");
-            char counsellor_name_chg[20];
-            char *accounts_name_chg = counsellor_name_chg;
-            fgets(accounts_name_chg, 21, stdin);
-            fflush(stdin);
-            if (check_string(ACCOUNT, counsellor_name_chg) == SUCCESS && atoll(counsellor_name_chg) != 0) {
-                strcpy(counsellor_name_chg, temp_check->name);
-            } else {
-                printf("Wrong input!");
-                printf("Input against!");
-                continue;
-            }
-            printf("请输入修改后的工号：");
-            char counsellor_work_number_chg[20];
-            char *accounts_work_number_chg = counsellor_work_number_chg;
-            fgets(accounts_work_number_chg, 21, stdin);
-            fflush(stdin);
-            if (check_string(ACCOUNT, counsellor_work_number_chg) == SUCCESS &&
-                atoll(counsellor_work_number_chg) != 0) {
-                temp_check->work_number = atol(counsellor_work_number_chg);
-            } else {
-                printf("Wrong input!");
-                printf("Input against!");
-                continue;
-            }
-            printf("请输入修改后的电话：");
-            char counsellor_phone_number_chg[12];
-            char *accounts_phone_number_chg = counsellor_phone_number_chg;
-            fgets(accounts_phone_number_chg, 13, stdin);
-            fflush(stdin);
-            if (check_string(ACCOUNT, counsellor_phone_number_chg) == SUCCESS &&
-                atoll(counsellor_phone_number_chg) != 0) {
-                strcpy(counsellor_phone_number_chg, temp_check->phone_number);
-            } else {
-                printf("Wrong input!");
-                printf("Input against!");
-                continue;
-            }
-            //   email 函数//
-
-            //            //
-            break;
-        }
-    }
-}
-
 
  counsellor_head_p initial_class_List(){
     counsellor_head_p head_point = (counsellor_head_p)malloc(sizeof(counsellor_head_p));
@@ -114,28 +64,49 @@ enum OPERATE find_counsellor(counsellor_head_p headP, enum SELECT select){
  */
 
 enum OPERATE find_counsellor_by_name(counsellor_head_p headP){
-    char counsellor_name[20];
-    char *accounts = counsellor_name;
-    fgets(accounts, 21, stdin);
+    if (headP == NULL){
+        printf("Fata Error: An unexpected error has been created, "
+               "please save your work and exit the system.\n");
+        return FAILED;
+    }
+
+    char target_counsellor_name[21];
+    char *temp_target_counsellor = target_counsellor_name;
+
+    counsellor_p temp_check = headP ->next;
+
+    printf("==Please enter the target counsellor name."
+           "It has to be made of pure name and the maxsize is 20\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+    printf("==Target counsellor name:");
+    fgets(temp_target_counsellor, 20, stdin);
     fflush(stdin);
-   counsellor_p temp_check = headP->next;
-    if(check_string(ACCOUNT, counsellor_name) == SUCCESS ){
-        while(temp_check != NULL){
-            if(strcmp(temp_check->name,accounts)==0){
-                printf("%s  \n",temp_check->name);
-                printf("%ld  \n",temp_check->work_number);
-                printf("%s  \n",temp_check->phone_number);
-                printf("%s  \n",temp_check->email);
-                break;
-            }
-            temp_check = temp_check->next;
+
+    while (true){
+        if (target_counsellor_name[0] == '0'){
+            printf("==Alright, returning menu...\n");
+            return FAILED;
         }
+
+        while(temp_check != NULL){
+            if (strcmp(temp_target_counsellor, temp_check->name) == 0) break;
+            temp_check = temp_check ->next;
+        }
+
+        if (temp_check == NULL){
+            printf("==The student is not exist yet! Please check your counsellor name!\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+            printf("==Target counsellor name:");
+            fgets(temp_target_counsellor, 20, stdin);
+            fflush(stdin);
+            temp_check = headP->next;
+        } else break;
     }
-    else{
-        printf("Wrong input!");
-        printf("Input against!");
-        return find_counsellor_by_name(headP);
-    }
+    printf("姓名： %s\n" , temp_check->name);
+    printf("工号： %ld\n" , temp_check->work_number);
+    printf("电话： %s\n" , temp_check->phone_number);
+    printf("邮箱： %s\n" , temp_check->email);
+
     return SUCCESS;
 }
 
@@ -154,28 +125,59 @@ enum OPERATE find_counsellor_by_name(counsellor_head_p headP){
  */
 
 enum OPERATE find_counsellor_by_work_number(counsellor_head_p headP){
-    char counsellor_number[20];
-    char *accounts = counsellor_number;
-    fgets(accounts, 21, stdin);
+    if (headP == NULL){
+        printf("Fata Error: An unexpected error has been created, "
+               "please save your work and exit the system.\n");
+        return FAILED;
+    }
+
+    char target_counsellor_number[12];
+    char *temp_target_counsellor = target_counsellor_number;
+
+    counsellor_p temp_check = headP ->next;
+
+    printf("==Please enter the target counsellor number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+    printf("==Target counsellor number:");
+    fgets(temp_target_counsellor, 11, stdin);
     fflush(stdin);
-    counsellor_p temp_check = headP->next;
-    if(check_string(ACCOUNT, counsellor_number) == SUCCESS && atoll(counsellor_number) != 0){
-        while(temp_check != NULL){
-            if(temp_check->work_number == atoll(accounts)){
-                printf("%s  \n",temp_check->name);
-                printf("%ld  \n",temp_check->work_number);
-                printf("%s  \n",temp_check->phone_number);
-                printf("%s  \n",temp_check->email);
-                break;
+
+    while (true){
+        if(check_string(ACCOUNT, temp_target_counsellor) == SUCCESS){
+            if (atoll(target_counsellor_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
             }
-            temp_check = temp_check->next;
+
+            while(temp_check != NULL){
+                if (temp_check->work_number == atol(temp_target_counsellor)) break;
+                temp_check = temp_check ->next;
+            }
+
+            if (temp_check == NULL){
+                printf("==The student number is not exist yet! Please check your counsellor number!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+                printf("==Target counsellor number:");
+                fgets(temp_target_counsellor, 11, stdin);
+                fflush(stdin);
+                temp_check = headP->next;
+            } else break;
+        }
+        else{
+            printf("==You can only enter numbers! Please enter the target counsellor number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+            printf("Target counsellor number:");
+            fgets(temp_target_counsellor, 11, stdin);
+            fflush(stdin);
         }
     }
-    else{
-        printf("Wrong input!");
-        printf("Input against!");
-        return find_counsellor_by_work_number(headP);
-    }
+
+    printf("姓名： %s\n" , temp_check->name);
+    printf("工号： %ld\n" , temp_check->work_number);
+    printf("电话： %s\n" , temp_check->phone_number);
+    printf("邮箱： %s\n" , temp_check->email);
+
     return SUCCESS;
 }
 
@@ -213,31 +215,56 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
 */
 
  enum OPERATE delete_counsellor_by_name(counsellor_head_p headP) {
-     char counsellor_name[20];
-     char *date = counsellor_name;
-     fgets(date, 21, stdin);
-     fflush(stdin);
-     counsellor_p temp_check = headP->next;
-     counsellor_p temp_check_ano = headP->next;
-     if (check_string(ACCOUNT, counsellor_name) == SUCCESS && atoll(counsellor_name) != 0) {
-         while(temp_check_ano->next != NULL) {
-             temp_check_ano = temp_check;
-             temp_check = temp_check_ano->next;
-             while(temp_check != NULL){
-                 if (strcmp(temp_check->name, date) == 0){
-                     temp_check_ano->next = temp_check->next;
-                     free(temp_check);
-                     break;
-                 }
-             }
-         }
-     }
-     else{
-         printf("Wrong input!");
-         printf("Input against!");
-         return delete_counsellor_by_name(headP);
-     }
-     return  SUCCESS;
+    if (headP == NULL){
+        printf("Fata Error: An unexpected error has been created, "
+               "please save your work and exit the system.\n");
+        return FAILED;
+    }
+
+    char target_counsellor_name[22];
+    char *temp_target_counsellor = target_counsellor_name;
+
+    counsellor_p target = headP->next;
+    counsellor_p pre_target = headP->next;
+
+    printf("==Please enter the target counsellor name.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+    printf("==Target counsellor name:");
+    fgets(temp_target_counsellor, 21, stdin);
+    fflush(stdin);
+
+    while (true){
+        if (target_counsellor_name[0] == '0'){
+            printf("==Alright, returning menu...\n");
+            return FAILED;
+        }
+
+        while(target != NULL){
+            if (strcmp(temp_target_counsellor, target->name) == 0) break;
+            target = target ->next;
+        }
+
+        if (target == NULL){
+            printf("==The student is not exist yet! Please check your counsellor name!\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+            printf("==Target counsellor name:");
+            fgets(temp_target_counsellor, 20, stdin);
+            fflush(stdin);
+            target = headP->next;
+        } else break;
+    }
+
+    if (target->work_number == pre_target->work_number){
+        headP->next = target->next;
+    } else{
+        while (pre_target->next->work_number != target->work_number){
+            pre_target = pre_target->next;
+        }
+        pre_target->next = target->next;
+    }
+    free(target);
+
+    return SUCCESS;
  }
 
 
@@ -256,31 +283,66 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
 */
 
  enum OPERATE delete_counsellor_by_work_number(counsellor_head_p headP){
-     char counsellor_work_number[20];
-     char *date = counsellor_work_number;
-     fgets(date, 21, stdin);
-     fflush(stdin);
-     counsellor_p temp_check = headP->next;
-     counsellor_p temp_check_ano = headP->next;
-     if (check_string(ACCOUNT, counsellor_work_number) == SUCCESS && atoll(counsellor_work_number) != 0) {
-         while(temp_check_ano->next != NULL) {
-             temp_check_ano = temp_check;
-             temp_check = temp_check_ano->next;
-             while(temp_check != NULL){
-                 if (strcmp(temp_check->name, date) == 0){
-                     temp_check_ano->next = temp_check->next;
-                     free(temp_check);
-                     break;
-                 }
-             }
-         }
-     }
-     else{
-         printf("Wrong input!");
-         printf("Input against!");
-         return delete_counsellor_by_work_number(headP);
-     }
-     return  SUCCESS;
+    if (headP == NULL){
+        printf("Fata Error: An unexpected error has been created, "
+               "please save your work and exit the system.\n");
+        return FAILED;
+    }
+
+    char counsellor_work_number[12];
+    char *temp_counsellor_work_number = counsellor_work_number;
+
+    counsellor_p target = headP->next;
+    counsellor_p pre_target = headP->next;
+
+    printf("==Please enter the target counsellor number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+    printf("==Target counsellor number:");
+    fgets(temp_counsellor_work_number, 11, stdin);
+    fflush(stdin);
+
+    while (true){
+        if(check_string(ACCOUNT, temp_counsellor_work_number) == SUCCESS){
+            if (atoll(counsellor_work_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            }
+
+            while(target != NULL){
+                if (target->work_number == atol(temp_counsellor_work_number)) break;
+                target = target ->next;
+            }
+
+            if (target == NULL){
+                printf("==The student number is not exist yet! Please check your counsellor number!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+                printf("==Target counsellor number:");
+                fgets(temp_counsellor_work_number, 11, stdin);
+                fflush(stdin);
+                target = headP->next;
+            } else break;
+        }
+        else{
+            printf("==You can only enter numbers! Please enter the target counsellor number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+            printf("Target counsellor number:");
+            fgets(temp_counsellor_work_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
+
+    if (target->work_number == pre_target->work_number){
+        headP->next = target->next;
+    } else{
+        while (pre_target->next->work_number != target->work_number){
+            pre_target = pre_target->next;
+        }
+        pre_target->next = target->next;
+    }
+    free(target);
+
+    return SUCCESS;
  }
 
 
@@ -298,74 +360,125 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
 *
 */
  enum OPERATE add_counsellor(counsellor_head_p headP){
-     char work_number[20];
-     char *date_input = work_number;
-     fgets(date_input, 21, stdin);
-     fflush(stdin);
-     counsellor_p temp_check = headP->next;
-     if(check_string(ACCOUNT, work_number) == SUCCESS && atoll(date_input) != 0){
-         while(temp_check != NULL){
-             if(temp_check->work_number == atoll(date_input)){
-                 printf("This student saved!");
-                 break;
-             }
-             temp_check = temp_check->next;
-         }
-         if(temp_check == NULL){
-             counsellor_p new_counsellor = (counsellor_p)malloc(sizeof(counsellor_p));
-             while(true){
-                 printf("请输入姓名：");
-                 char counsellor_name_add[20];
-                 char *date_name_add = counsellor_name_add;
-                 fgets(date_name_add, 21, stdin);
-                 fflush(stdin);
-                 if(check_string(ACCOUNT, counsellor_name_add) == SUCCESS && atoll(counsellor_name_add) != 0) {
-                    strcpy(counsellor_name_add,new_counsellor->name);
-                 }
-                 else{
-                     printf("Wrong input!");
-                     printf("Input against!");
-                     continue;
-                 }
-                 printf("请输入工号：");
-                 char counsellor_work_number_add[20];
-                 char *date_work_number_add=counsellor_work_number_add;
-                 fgets(date_work_number_add, 21, stdin);
-                 fflush(stdin);
-                 if(check_string(ACCOUNT, counsellor_work_number_add) == SUCCESS && atoll(counsellor_work_number_add) != 0) {
-                     new_counsellor->work_number = atol(counsellor_work_number_add);
-                 }
-                 else{
-                     printf("Wrong input!");
-                     printf("Input against!");
-                     continue;
-                 }
-                 printf("请输入电话：");
-                 char counsellor_phone_number_add[12];
-                 char *date_phone_number_add=counsellor_phone_number_add;
-                 fgets(date_phone_number_add, 13, stdin);
-                 fflush(stdin);
-                 if(check_string(ACCOUNT, counsellor_phone_number_add) == SUCCESS && atoll(counsellor_phone_number_add) != 0) {
-                     strcpy(counsellor_phone_number_add,new_counsellor->phone_number);
-                  }
-                 else{
-                     printf("Wrong input!");
-                     printf("Input against!");
-                     continue;
-                 }
-                 //   email 函数//
+    if (headP == NULL){
+        printf("Fata Error: An unexpected error has been created, "
+               "please save your work and exit the system.\n");
+        return FAILED;
+    }
 
-                 //            //
-                  break;
-             }
-         }
-     }
-     else{
-         printf("Wrong input!");
-         printf("Input against!");
-         return add_counsellor(headP);
-     }
-     return SUCCESS;
+    counsellor_p end_counsellor = headP->next;
+    counsellor_p new_counsellor = (counsellor_p ) malloc(sizeof(counsellor_p ));
+    if(end_counsellor == NULL){
+        end_counsellor = new_counsellor;
+    }else{
+        while (end_counsellor->next != NULL){
+            end_counsellor = end_counsellor->next;
+        }
+
+        end_counsellor->next = new_counsellor;
+    }
+    char uid[24];
+    char *temp_uid = uid;
+
+    create_uid(temp_uid);
+    strcpy(new_counsellor->uid, uid);
+
+    //char class_uid[20];//
+
+    char work_number[12];
+    char *temp_counsellor_number = work_number;
+    printf("==Please enter the target counsellor number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+    printf("==Target counsellor number:");
+    fgets(temp_counsellor_number, 11, stdin);
+    fflush(stdin);
+    while (true){
+        if (check_string(ACCOUNT, temp_counsellor_number) == SUCCESS){
+            if (atol(work_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                new_counsellor->  work_number = atol(work_number);
+                printf("==OK, the counsellor has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  counsellor number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+            printf("The counsellor number:");
+            fgets(temp_counsellor_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
+
+    char counsellor_name[22];
+    char *temp_counsellor_name = counsellor_name;
+    printf("==Please enter the target counsellor name."
+           "It has to be made of pure name and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+    printf("==Target counsellor name:");
+    fgets(temp_counsellor_number, 21, stdin);
+    fflush(stdin);
+    strcpy(new_counsellor->name , counsellor_name);
+
+
+
+    char email[33];
+    char *temp_email = email;
+    printf("==Please enter the target counsellor email."
+           "It has to be made of pure email and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor email.\n");
+    printf("==Target counsellor email:");
+    fgets(temp_email, 32, stdin);
+    fflush(stdin);
+
+    while (true){
+        if (check_string(EMAIL, temp_email) == SUCCESS){
+            strcpy(new_counsellor->email , email);
+            printf("==OK, the counsellor email has been set successfully.\n");
+            break;
+        } else{
+            printf("==You can only enter email! Please enter the  counsellor email again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor email.\n");
+            printf("The counsellor email:");
+            fgets(temp_email, 32, stdin);
+            fflush(stdin);
+        }
+    }
+
+    char phone_number[12];
+    char *temp_phone = phone_number;
+    printf("==Please enter the target phone number."
+           "It has to be made of pure phone number and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than phone number.\n");
+    printf("==Target phone number:");
+    fgets(temp_phone, 12, stdin);
+    fflush(stdin);
+
+    while (true){
+        if (check_string(TELEPHONE_NUMBER, temp_phone) == SUCCESS){
+            if (atol(phone_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                strcpy(new_counsellor->phone_number , phone_number);
+                printf("==OK, the counsellor has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  phone number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than phone number.\n");
+            printf("The phone number:");
+            fgets(temp_phone, 12, stdin);
+            fflush(stdin);
+        }
+    }
+
+    new_counsellor->HAS_MAX_CLASS = FALSE_RES;
+
+
+    return SUCCESS;
  }
 
 
@@ -382,23 +495,143 @@ enum OPERATE delete_counsellor(counsellor_head_p headP,enum SELECT select){
 *
 */
 
- enum OPERATE chg_counsellor(counsellor_head_p headP){
-     char counsellor_work_number[20];
-     char *date = counsellor_work_number;
-     fgets(date, 21, stdin);
-     fflush(stdin);
+ enum OPERATE update_counsellor(counsellor_head_p headP , enum SELECT select){
+    if(select == NAME) return update_counsellor_by_name(headP);
+    if(select == WORK_NUMBER) return update_counsellor_by_work_number(headP);
+    return SUCCESS;
+ }
+
+
+ enum OPERATE update_counsellor_by_name(counsellor_head_p headP){
+     if (headP == NULL){
+         printf("Fata Error: An unexpected error has been created, "
+                "please save your work and exit the system.\n");
+         return FAILED;
+     }
+
+     char counsellor_name[22];
+     char *target_counsellor_name = counsellor_name;
+
      counsellor_p temp_check = headP->next;
-     if(check_string(ACCOUNT, counsellor_work_number) == SUCCESS && atoll(counsellor_work_number) != 0){
-         while(temp_check!= NULL){
-             input_chg_information(headP,date);
-             temp_check = temp_check->next;
+
+     printf("==Please enter the target counsellor name.\n");
+     printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+     printf("==Target counsellor name:");
+     fgets(target_counsellor_name, 21, stdin);
+     fflush(stdin);
+
+     while (true){
+         if (target_counsellor_name[0] == '0'){
+             printf("==Alright, returning menu...\n");
+             return FAILED;
+         }
+
+         while(temp_check != NULL){
+             if (strcmp(counsellor_name, temp_check->name) == 0) break;
+             temp_check = temp_check ->next;
+         }
+
+         if (temp_check == NULL){
+             printf("==The student is not exist yet! Please check your counsellor name!\n");
+             printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+             printf("==Target counsellor name:");
+             fgets(target_counsellor_name, 21, stdin);
+             fflush(stdin);
+             temp_check = headP->next;
+         } else break;
+     }
+     printf("==Please enter the target counsellor name."
+            "It has to be made of pure name and the maxsize is 20.\n");
+     printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+     printf("==Target counsellor name:");
+     fgets(target_counsellor_name, 21, stdin);
+     fflush(stdin);
+
+     while (true){
+         if (check_string(ACCOUNT, target_counsellor_name) == SUCCESS){
+             strcpy(temp_check->name , target_counsellor_name);
+             printf("==OK, the counsellor name has been set successfully.\n");
+             break;
+         }
+         else{
+             printf("==You can only enter name! Please enter the  counsellor name again.\n");
+             printf("==If you want to cancel the operate, just enter 0 rather than counsellor name.\n");
+             printf("The counsellor name:");
+             fgets(target_counsellor_name, 21, stdin);
+             fflush(stdin);
          }
      }
-     else{
-         printf("Wrong input!");
-         printf("Input against!");
-         return chg_counsellor(headP);
-     }
+
      return SUCCESS;
  }
 
+enum OPERATE update_counsellor_by_work_number(counsellor_head_p headP){
+    char counsellor_work_number[12];
+    char *temp_counsellor_work_number = counsellor_work_number;
+
+    counsellor_p target = headP->next;
+
+    printf("==Please enter the target counsellor number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+    printf("==Target counsellor number:");
+    fgets(temp_counsellor_work_number, 11, stdin);
+    fflush(stdin);
+
+    while (true){
+        if(check_string(ACCOUNT, temp_counsellor_work_number) == SUCCESS){
+            if (atoll(counsellor_work_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            }
+
+            while(target != NULL){
+                if (target->work_number == atol(temp_counsellor_work_number)) break;
+                target = target ->next;
+            }
+
+            if (target == NULL){
+                printf("==The counsellor number is not exist yet! Please check your counsellor number!\n");
+                printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+                printf("==Target counsellor number:");
+                fgets(temp_counsellor_work_number, 11, stdin);
+                fflush(stdin);
+                target = headP->next;
+            } else break;
+        }
+        else{
+            printf("==You can only enter numbers! Please enter the target counsellor number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+            printf("Target counsellor number:");
+            fgets(temp_counsellor_work_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
+
+    printf("==Please enter the target counsellor number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+    printf("==Target counsellor number:");
+    fgets(temp_counsellor_work_number, 11, stdin);
+    fflush(stdin);
+    while (true){
+        if (check_string(ACCOUNT, temp_counsellor_work_number) == SUCCESS){
+            if (atol(counsellor_work_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                target->work_number = atol(counsellor_work_number);
+                printf("==OK, the counsellor has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  counsellor number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than counsellor number.\n");
+            printf("The counsellor number:");
+            fgets(temp_counsellor_work_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
+
+    return SUCCESS;
+ }
