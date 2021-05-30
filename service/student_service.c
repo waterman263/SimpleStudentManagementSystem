@@ -414,42 +414,117 @@ enum OPERATE add_student(stu_head_p headP){
 
     student_p end_student = headP->next;
     student_p new_student = (student_p) malloc(sizeof(student_p));
+    if(end_student == NULL){
+        end_student = new_student;
+    }else{
+        while (end_student->next != NULL){
+            end_student = end_student->next;
+        }
 
-    while (end_student->next != NULL){
-        end_student = end_student->next;
+        end_student->next = new_student;
     }
-
-    end_student->next = new_student;
-
     char uid[24];
     char *temp_uid = uid;
 
     create_uid(temp_uid);
     strcpy(new_student->uid, uid);
 
-    char class_uid[20];
+    //char class_uid[20];//
 
     char student_number[12];
     char *temp_student_number = student_number;
+    printf("==Please enter the target student number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than student number.\n");
+    printf("==Target student number:");
+    fgets(temp_student_number, 11, stdin);
+    fflush(stdin);
+    while (true){
+        if (check_string(ACCOUNT, temp_student_number) == SUCCESS){
+            if (atol(student_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                new_student->  student_number = atol(student_number);
+                printf("==OK, the student has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  student number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than student number.\n");
+            printf("The student number:");
+            fgets(temp_student_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
 
-    char name[22];
-    char *temp_name = name;
+    char student_name[22];
+    char *temp_student_name = student_name;
+    printf("==Please enter the target student name."
+           "It has to be made of pure name and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than student name.\n");
+    printf("==Target student name:");
+    fgets(temp_student_name, 21, stdin);
+    fflush(stdin);
+    strcpy(new_student->name , student_name);
+
+
 
     char email[33];
     char *temp_email = email;
+    printf("==Please enter the target student email."
+           "It has to be made of pure email and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than student email.\n");
+    printf("==Target student email:");
+    fgets(temp_email, 32, stdin);
+    fflush(stdin);
+
+    while (true){
+        if (check_string(EMAIL, temp_email) == SUCCESS){
+                strcpy(new_student->email , email);
+                printf("==OK, the student email has been set successfully.\n");
+                break;
+        } else{
+            printf("==You can only enter email! Please enter the  student email again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than student email.\n");
+            printf("The student email:");
+            fgets(temp_email, 32, stdin);
+            fflush(stdin);
+        }
+    }
 
     char phone_number[12];
     char *temp_phone = phone_number;
+    printf("==Please enter the target phone number."
+           "It has to be made of pure phone number and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than phone number.\n");
+    printf("==Target phone number:");
+    fgets(temp_phone, 12, stdin);
+    fflush(stdin);
+
+    while (true){
+        if (check_string(TELEPHONE_NUMBER, temp_phone) == SUCCESS){
+            if (atol(phone_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                strcpy(new_student->phone_number , phone_number);
+                printf("==OK, the student has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  phone number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than phone number.\n");
+            printf("The phone number:");
+            fgets(temp_phone, 12, stdin);
+            fflush(stdin);
+        }
+    }
 
     new_student->HAS_SCORE_INPUT = FALSE_RES;
 
 
     return SUCCESS;
-}
-
-
-void  input_information(student_p target_student) {
-
 }
 
 /**
@@ -518,8 +593,27 @@ enum OPERATE update_student_by_name(stu_head_p headP){
             temp_check = headP->next;
         } else break;
     }
+    printf("==Please enter the target student name."
+           "It has to be made of pure name and the maxsize is 20.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than student name.\n");
+    printf("==Target student name:");
+    fgets(target_student_name, 21, stdin);
+    fflush(stdin);
 
-    input_information(temp_check);
+    while (true){
+        if (check_string(ACCOUNT, target_student_name) == SUCCESS){
+            strcpy(temp_check->name , target_student_name);
+            printf("==OK, the student name has been set successfully.\n");
+            break;
+        }
+        else{
+            printf("==You can only enter name! Please enter the  student name again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than student name.\n");
+            printf("The student name:");
+            fgets(target_student_name, 21, stdin);
+            fflush(stdin);
+        }
+    }
 
     return SUCCESS;
 }
@@ -578,10 +672,30 @@ enum OPERATE update_student_by_number(stu_head_p headP){
         }
     }
 
-    input_information(target);
+    printf("==Please enter the target student number."
+           "It has to be made of pure numbers and the maxsize is 10.\n");
+    printf("==If you want to cancel the operate, just enter 0 rather than student number.\n");
+    printf("==Target student number:");
+    fgets(temp_student_number, 11, stdin);
+    fflush(stdin);
+    while (true){
+        if (check_string(ACCOUNT, temp_student_number) == SUCCESS){
+            if (atol(student_number) == 0){
+                printf("==Alright, returning menu...\n");
+                return FAILED;
+            } else{
+                target->student_number = atol(student_number);
+                printf("==OK, the student has been set successfully.\n");
+                break;
+            }
+        } else{
+            printf("==You can only enter numbers! Please enter the  student number again.\n");
+            printf("==If you want to cancel the operate, just enter 0 rather than student number.\n");
+            printf("The student number:");
+            fgets(temp_student_number, 11, stdin);
+            fflush(stdin);
+        }
+    }
 
     return SUCCESS;
 }
-
-
-

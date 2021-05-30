@@ -408,7 +408,3 @@ enum OPERATE update_class(class_head_p headP){
 
     return SUCCESS;
 }
-
-
-
-

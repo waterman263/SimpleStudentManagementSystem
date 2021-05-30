@@ -8,7 +8,7 @@
 #include "setting.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "serviceHead/operate_file.h"
+#include "operate_file.h"
 #include "entity/counsellors.h"
 
 
@@ -23,6 +23,8 @@ enum OPERATE delete_counsellor(counsellor_head_p headP, enum SELECT select);
 enum OPERATE delete_counsellor_by_work_number(counsellor_head_p headP);
 enum OPERATE delete_counsellor_by_name(counsellor_head_p headP);
 enum OPERATE add_counsellor(counsellor_head_p headP);
-enum OPERATE chg_counsellor(counsellor_head_p headP);
+enum OPERATE update_counsellor(counsellor_head_p headP, enum SELECT select);
+enum OPERATE update_counsellor_by_name(counsellor_head_p headP);
+enum OPERATE update_counsellor_by_work_number(counsellor_head_p headP);
 
 #endif //CODEFIELD_COUNSELLOR_SERVICE_H
