@@ -64,15 +64,27 @@ grade_p create_grade(grade_head_p head){
 
     new_grade = set_grade(new_grade);
 
-    while(temp_grade->next != NULL){
-        temp_grade = temp_grade->next;
+    if (temp_grade == NULL) temp_grade = new_grade;
+    else {
+        while(temp_grade->next != NULL){
+            temp_grade = temp_grade->next;
+        }
+        temp_grade->next = new_grade;
     }
-
-    temp_grade->next = new_grade;
     printf("That's alright.Returning to the main menu\n");
     return new_grade;
 }
 
+/**
+ * @author Little-Red-Riding-Hood
+ * @brief set the properties of grade
+ * @date 2021-5-30
+ *
+ * @param grade_p new_grade
+ *
+ *
+ * @return grade entity
+ */
 grade_p set_grade(grade_p grade){
     char grade_number[5];
     char *temp_grade_number = grade_number;
@@ -83,7 +95,7 @@ grade_p set_grade(grade_p grade){
 
     printf("==Please input the grade number.It should be a four-digit-number.\n");
     printf("==Grade number:");
-    fgets(temp_grade_number, 4, stdin);
+    fgets(temp_grade_number, 5, stdin);
     fflush(stdin);
 
     while (true){
@@ -109,6 +121,16 @@ grade_p set_grade(grade_p grade){
     return grade;
 }
 
+/**
+ * @author Little-Red-Riding-Hood
+ * @brief update the properties of grade
+ * @date 2021-5-30
+ *
+ * @param grade_head_p head
+ *
+ *
+ * @return grade entity
+ */
 void update_grade (grade_head_p head){
 
     char target_grade[5];
@@ -182,6 +204,14 @@ void update_grade (grade_head_p head){
     printf("==Returning menu now...\n");
 }
 
+/**
+ * @author Little-Red-Riding-Hood
+ * @brief delete the properties of grade
+ * @date 2021-5-30
+ *
+ * @param grade_head_p head
+ *
+ */
 void delete_grade(grade_head_p head){
     grade_p pre_grade, target_grade;
     int judge = 0;
@@ -244,4 +274,3 @@ void delete_grade(grade_head_p head){
     printf("==Returning menu now...\n");
 
 }
-
