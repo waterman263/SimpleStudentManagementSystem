@@ -12,8 +12,9 @@
 #include "entity/grade.h"
 #include "entity/classes.h"
 #include "entity/teacher.h"
-teache_head_p initial_Teacher_List();
-teacher_p create_teacher(teach_head_p head,enum BOOLEAN_USE HAS_MAX_CLASSES);
+teach_head_p initial_Teacher_List();
+teacher_p create_teacher(teach_head_p head);
 teacher_p set_teacher(teacher_p teacher, teach_head_p head);
 void query_class(teacher_p teacher, class_head_p head);
+void query_my_data(teach_head_p head);
 #endif //_TEACHER_SERVICE_H

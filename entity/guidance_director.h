@@ -15,14 +15,14 @@
 typedef struct guidance_director{
     char uid[24];
     long work_number;
-    char phone_number[11];
-    char email[30];
-    char name[10];
+    char name[21];
+    char email[33];
     struct guidance_director *next;
+    char phone_number[11];
 }director, *director_p;
 
 typedef struct guidance_director_head_pointer{
-    struct director *next;
+     director *next;
 }director_head_pointer, *director_head_p;
 
 #endif //_GUIDANCE_DIRECTOR_H
