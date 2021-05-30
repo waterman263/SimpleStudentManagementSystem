@@ -31,7 +31,14 @@ enum OPERATE {
 };
 
 enum FILE_TYPE {
-    USERS_DATA
+    USERS_DATA,
+    GRADES_DATA,
+    CLASS_DATA,
+    DIRECTOR_DATA,
+    TEACHERS_DATA,
+    COUNSELLORS_DATA,
+    STUDENTS_DATA,
+    ADMINISTRATORS_DATA
 };
 
 enum OPERATE open_file(enum FILE_TYPE file_type, void *struct_pointer);
@@ -40,6 +47,16 @@ enum OPERATE read_file_data(enum FILE_TYPE file_type, char  *json_data, void *st
 enum OPERATE save_file_data(enum FILE_TYPE file_type, char  *target_data, void *struct_pointer);
 
 enum OPERATE parsing_users_data(char *json_data, void *struct_pointer);
+enum OPERATE parsing_grades_data(char *json_data, void *struct_pointer);
+enum OPERATE parsing_classes_data(char *json_data, void *struct_pointer);
+enum OPERATE parsing_teachers_data(char *json_data, void *struct_pointer);
+enum OPERATE parsing_students_data(char *json_data, void *struct_pointer);
 
 enum OPERATE save_users_data(char *target_data, void *struct_pointer);
+enum OPERATE save_grades_data(char *target_data, void *struct_pointer);
+enum OPERATE save_classes_data(char *target_data, void *struct_pointer);
+enum OPERATE save_counsellors_data(char *target_data, void *struct_pointer);
+enum OPERATE save_teachers_data(char *target_data, void *struct_pointer);
+enum OPERATE save_directors_data(char *target_data, void *struct_pointer);
+enum OPERATE save_students_data(char *target_data, void *struct_pointer);
 #endif

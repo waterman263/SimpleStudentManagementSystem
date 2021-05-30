@@ -64,7 +64,7 @@ grade_p create_grade(grade_head_p head){
 
     new_grade = set_grade(new_grade);
 
-    if (temp_grade == NULL) temp_grade = new_grade;
+    if (temp_grade == NULL) head->next = new_grade;
     else {
         while(temp_grade->next != NULL){
             temp_grade = temp_grade->next;
@@ -115,6 +115,13 @@ grade_p set_grade(grade_p grade){
     create_uid(uid);
     strcpy(grade->uid, grade_uid);
 
+    grade->subject_aver[ADVANCED_MATHEMATICS][0] = 0;
+    grade->subject_aver[ENGLISH][0] = 0;
+    grade->subject_aver[C_PROGRAM_LANGUAGE][0] = 0;
+    grade->subject_aver[PHYSICAL_EDUCATION][0] = 0;
+    grade->subject_aver[PYTHON][0] = 0;
+    grade->general_aver_gpa = 0;
+    grade->general_aver_score = 0;
     grade->class_total = 0;
     grade->HAS_CLASSES_INPUT = FALSE_RES;
 
@@ -144,7 +151,7 @@ void update_grade (grade_head_p head){
     printf("==Please input the number of the grade you want to change.\n");
     printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
     printf("==Target grade number:");
-    fgets(temp_target_grade, 4, stdin);
+    fgets(temp_target_grade, 5, stdin);
     fflush(stdin);
 
     while (true){
@@ -153,15 +160,16 @@ void update_grade (grade_head_p head){
                 printf("==Alright, returning menu...\n");
                 return;
             }
-
             while (temp_grade != NULL){
                 if (temp_grade->grade_number == atol(target_grade)) break;
+                temp_grade = temp_grade->next;
             }
             if (temp_grade == NULL){
                 printf("==The grade number is not exist yet. Please check your grade number!\n");
                 printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
                 printf("==Target grade number:");
-                fgets(temp_target_grade, 4, stdin);
+                temp_grade = head->next;
+                fgets(temp_target_grade, 5, stdin);
                 fflush(stdin);
             } else break;
 
@@ -170,7 +178,7 @@ void update_grade (grade_head_p head){
                    "\n==Please enter it again!\n");
             printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
             printf("==Target grade number:");
-            fgets(temp_target_grade, 4, stdin);
+            fgets(temp_target_grade, 5, stdin);
             fflush(stdin);
         }
     }
@@ -179,7 +187,7 @@ void update_grade (grade_head_p head){
     printf("==Please enter the grade number you want to replace the old one.\n");
     printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
     printf("==New grade number:");
-    fgets(temp_update_grade_number, 4, stdin);
+    fgets(temp_update_grade_number, 5, stdin);
     fflush(stdin);
 
     while (true){
@@ -194,7 +202,7 @@ void update_grade (grade_head_p head){
                    "\n==Please enter again! \n");
             printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
             printf("==New grade number:");
-            fgets(temp_target_grade, 4, stdin);
+            fgets(temp_target_grade, 5, stdin);
             fflush(stdin);
         }
     }
@@ -223,13 +231,17 @@ void delete_grade(grade_head_p head){
         return;
     }
 
+    printf("==Warning: This action will result in all classes in the deleted grade being deleted.\n");
+    printf("Press any key to continue.\n");
+    getchar();
+
     pre_grade = head->next;
     target_grade = pre_grade;
 
     printf("==Please input the number of the grade you want to delete\n");
     printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
     printf("==Target grade number:");
-    fgets(temp_grade_number, 4, stdin);
+    fgets(temp_grade_number, 5, stdin);
     fflush(stdin);
 
     while (true){
@@ -246,7 +258,7 @@ void delete_grade(grade_head_p head){
                 printf("==The grade number is not exist yet. Please check your grade number!\n");
                 printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
                 printf("==Target grade number:");
-                fgets(temp_grade_number, 4, stdin);
+                fgets(temp_grade_number, 5, stdin);
                 fflush(stdin);
             } else break;
         } else{
@@ -254,7 +266,7 @@ void delete_grade(grade_head_p head){
                    "\n==Please enter it again!\n");
             printf("==If you want to cancel the operate, just enter 0 rather than the grade number.\n");
             printf("==Target grade number:");
-            fgets(temp_grade_number, 4, stdin);
+            fgets(temp_grade_number, 5, stdin);
             fflush(stdin);
         }
     }
@@ -272,5 +284,35 @@ void delete_grade(grade_head_p head){
 
     printf("==Delete successfully!\n");
     printf("==Returning menu now...\n");
+
+}
+
+
+void query_grade(grade_head_p head, int query_all){
+    if (query_all == TRUE_RES) query_grade_all(head);
+    else query_grade_one(head);
+}
+
+void query_grade_all(grade_head_p head){
+    grade_p temp_grade = head->next;
+
+    while (temp_grade != NULL){
+        printf("Grade: %d\n", temp_grade->grade_number);
+        printf("Class Total: %d\n", temp_grade->class_total);
+        if (temp_grade->HAS_CLASSES_INPUT == TRUE_RES){
+            printf("ADVANCED_MATHEMATICS: %lf\n", temp_grade->subject_aver[ADVANCED_MATHEMATICS][0]);
+            printf("ENGLISH: %lf\n", temp_grade->subject_aver[ENGLISH][0]);
+            printf("C_PROGRAM_LANGUAGE: %lf\n", temp_grade->subject_aver[C_PROGRAM_LANGUAGE][0]);
+            printf("PHYSICAL_EDUCATION: %lf\n", temp_grade->subject_aver[PHYSICAL_EDUCATION][0]);
+            printf("PYTHON: %lf\n", temp_grade->subject_aver[PYTHON][0]);
+            printf("Average score: %lf\n", temp_grade->general_aver_score);
+            printf("Average GPA: %lf\n\n", temp_grade->general_aver_gpa);
+        }else{
+            printf("Missing score information.\n\n");
+        }
+        temp_grade = temp_grade->next;
+    }
+}
+void query_grade_one(grade_head_p head){
 
 }

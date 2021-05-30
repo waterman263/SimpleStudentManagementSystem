@@ -14,7 +14,7 @@
 #include "serviceHead/counsellor_service.h"
 
 
- counsellor_head_p initial_class_List(){
+ counsellor_head_p initial_counsellor_List(){
     counsellor_head_p head_point = (counsellor_head_p)malloc(sizeof(counsellor_head_p));
     if(head_point == NULL)
     {

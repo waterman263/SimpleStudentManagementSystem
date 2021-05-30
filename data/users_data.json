@@ -23,5 +23,11 @@
 			"password":	"Loritas123456",
 			"work_number":	66666666,
 			"user_role":	-5
+		}, {
+			"name":	"Louis",
+			"account":	1143491963,
+			"password":	"123456789qwe",
+			"work_number":	12345678,
+			"user_role":	-5
 		}]
 }

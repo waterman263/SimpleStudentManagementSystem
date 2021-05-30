@@ -14,6 +14,15 @@
 #define RED_FRONT_COLOR "\033[0;32;31m"
 #define COLOR_NONE  "\033[m"
 
+enum SELECT{
+    CLASS_NUMBER,
+    ONE,
+    ALL,
+    NAME,
+    NUMBER,
+    WORK_NUMBER
+};
+
 enum STRING_TYPE{
     PASSWORD,
     TELEPHONE_NUMBER,

@@ -27,6 +27,10 @@ enum OPERATE open_file(enum FILE_TYPE file_type, void *struct_pointer){
         path = USER_DATA;
     }
 
+    if (file_type == GRADES_DATA){
+        path = GRADE_DATA;
+    }
+
     FILE *file_check = fopen(path, "rt");
     if (file_check == NULL){
         printf("Warning: The system data file is missing."
@@ -45,7 +49,7 @@ enum OPERATE open_file(enum FILE_TYPE file_type, void *struct_pointer){
         // printf("%s", json);
 
         fclose(file_check);
-        if (read_file_data(USERS_DATA, json, struct_pointer) != SUCCESS){
+        if (read_file_data(file_type, json, struct_pointer) != SUCCESS){
             printf("Warning: an error occurred while the system was reading data."
                    " This will cause the system to create a new file and clear the old file.\n");
             printf("Press any key to continue.\n");
@@ -65,20 +69,21 @@ enum OPERATE save_file(enum FILE_TYPE file_type, void *struct_pointer){
         path = USER_DATA;
     }
 
+    if (file_type == GRADES_DATA){
+        path = GRADE_DATA;
+    }
+
     char data[1001000];
     char *target_data = data;
     FILE *file = fopen(path, "wt");
 
     save_file_data(file_type, target_data, struct_pointer);
-    printf("%s", target_data);
     fputs(data, file);
 
     fclose(file);
 
     return SUCCESS;
 }
-
-
 
 enum OPERATE read_file_data(enum FILE_TYPE file_type, char *json_data, void *struct_pointer){
     if (file_type == USERS_DATA) return parsing_users_data(json_data, struct_pointer);
@@ -90,13 +95,22 @@ enum OPERATE parsing_users_data(char *json_data, void *struct_pointer){
     return parsing_user_data(json_data, struct_pointer);
 }
 
+enum OPERATE parsing_grades_data(char *json_data, void *struct_pointer){
+    return parsing_grade_data(json_data, struct_pointer);
+}
+
 enum OPERATE save_file_data(enum FILE_TYPE file_type, char  *target_data, void *struct_pointer){
     if (file_type == USERS_DATA) return save_users_data(target_data, struct_pointer);
+    if (file_type == GRADES_DATA) return save_grades_data(target_data, struct_pointer);
 
     else return FAILED;
 }
 
 enum OPERATE save_users_data(char *target_data, void *struct_pointer){
     return save_user_data(target_data, struct_pointer);
+}
+
+enum OPERATE save_grades_data(char *target_data, void *struct_pointer){
+    return save_grade_data(target_data, struct_pointer);
 }
 

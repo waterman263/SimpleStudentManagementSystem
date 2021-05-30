@@ -1,0 +1,27 @@
+{
+	"grades":	[{
+			"uid":	"162238253910022974",
+			"grade_number":	2020,
+			"class_total":	0,
+			"average_score":	0,
+			"average_gpa":	0,
+			"subject_score":	[0, 0, 0, 0, 0],
+			"has_class_input":	1
+		}, {
+			"uid":	"162238254210022984",
+			"grade_number":	2021,
+			"class_total":	0,
+			"average_score":	0,
+			"average_gpa":	0,
+			"subject_score":	[0, 0, 0, 0, 0],
+			"has_class_input":	1
+		}, {
+			"uid":	"162238254510022994",
+			"grade_number":	2019,
+			"class_total":	0,
+			"average_score":	0,
+			"average_gpa":	0,
+			"subject_score":	[0, 0, 0, 0, 0],
+			"has_class_input":	1
+		}]
+}

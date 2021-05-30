@@ -21,7 +21,7 @@ typedef struct grade{
     char uid[24];
     int grade_number;
     int class_total;
-    float *subject_aver[5][1];
+    float subject_aver[5][1];
     float general_aver_score;
     float general_aver_gpa;
     enum BOOLEAN_USE HAS_CLASSES_INPUT;
