@@ -15,8 +15,8 @@
 
 typedef struct classes{
     char uid[24];
-    char grade_uid[20];
     char counsellor_uid[20];
+    int grade_number;
     long  class_number;
     float subject_aver[5][1];
     float general_aver;

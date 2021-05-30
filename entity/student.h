@@ -22,7 +22,7 @@
 
 typedef struct student{
     char uid[24];
-    char class_uid[20];
+    long class_number;
     long long student_number;
     char name[22];
     char email[33];

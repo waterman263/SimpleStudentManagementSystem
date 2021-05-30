@@ -131,8 +131,179 @@ enum OPERATE parsing_user_data(char *json_data, void *struct_pointer){
     }
     return SUCCESS;
 }
+//todo
+enum OPERATE parsing_grade_data(char *json_data, void *struct_pointer){
+    grade_head_p gradeHeadP = (grade_head_p) struct_pointer;
+    grade_p temp_grade = gradeHeadP->next;
+
+    cJSON *root = cJSON_Parse(json_data);
+
+    return SUCCESS;
+}
+
 
 enum OPERATE save_user_data(char *target_data, void *struct_pointer){
+    users_head_p usersHeadP = (users_head_p) struct_pointer;
+    USER temp_user = usersHeadP->next;
+
+    cJSON *root = NULL;
+    cJSON *users_array = NULL;
+    cJSON *users = NULL;
+    cJSON *user_name = NULL;
+    cJSON *user_work_number = NULL;
+    cJSON *user_account = NULL;
+    cJSON *user_role = NULL;
+    cJSON *user_password = NULL;
+
+    root = cJSON_CreateObject();
+
+    users_array = cJSON_CreateArray();
+    cJSON_AddItemToObject(root, "users", users_array);
+
+    while (temp_user != NULL){
+        users = cJSON_CreateObject();
+        cJSON_AddItemToArray(users_array, users);
+
+        user_name = cJSON_CreateString(temp_user->name);
+        cJSON_AddItemToObject(users, "name", user_name);
+
+        user_account = cJSON_CreateNumber(temp_user->account);
+        cJSON_AddItemToObject(users, "account",user_account);
+
+        user_password = cJSON_CreateString(temp_user->password);
+        cJSON_AddItemToObject(users, "password", user_password);
+
+        user_work_number = cJSON_CreateNumber(temp_user->work_number);
+        cJSON_AddItemToObject(users, "work_number", user_work_number);
+
+        user_role = cJSON_CreateNumber(temp_user->USER_ROLE);
+        cJSON_AddItemToObject(users, "user_role", user_role);
+
+        temp_user = temp_user->next;
+    }
+
+    //printf("\n%s\n", cJSON_Print(root));
+    strcpy(target_data, cJSON_Print(root));
+    return SUCCESS;
+}
+
+enum OPERATE save_grade_data(char *target_data, void *struct_pointer){
+    char subjects[5][30] = {"ADVANCED_MATHEMATICS",
+            "ENGLISH",
+            "C_PROGRAM_LANGUAGE",
+            "PHYSICAL_EDUCATION",
+            "PYTHON"};
+
+    grade_head_p gradeHeadP = (grade_head_p) struct_pointer;
+    grade_p temp_grade = gradeHeadP->next;
+
+    cJSON *root = NULL;
+    cJSON *grade_array = NULL;
+    cJSON *grades = NULL;
+    cJSON *grades_number = NULL;
+    cJSON *grades_subject_array = NULL;
+    cJSON *grades_subject_score = NULL;
+    cJSON *grades_aver_score = NULL;
+    cJSON *grades_aver_gpa = NULL;
+    cJSON *grades_uid = NULL;
+    cJSON *grades_class = NULL;
+    cJSON *grades_has_class = NULL;
+
+    root = cJSON_CreateObject();
+
+    grade_array = cJSON_CreateArray();
+    cJSON_AddItemToObject(root, "grades", grade_array);
+
+    while (temp_grade != NULL){
+        grades = cJSON_CreateObject();
+        cJSON_AddItemToArray(grade_array, grades);
+
+        grades_uid = cJSON_CreateString(temp_grade->uid);
+        cJSON_AddItemToObject(grades, "uid", grades_uid);
+
+        grades_number = cJSON_CreateNumber(temp_grade->grade_number);
+        cJSON_AddItemToObject(grades, "grade_number", grades_number);
+
+        grades_class= cJSON_CreateNumber(temp_grade->class_total);
+        cJSON_AddItemToObject(grades, "class_total", grades_class);
+
+        grades_aver_score = cJSON_CreateNumber(temp_grade->general_aver_score);
+        cJSON_AddItemToObject(grades, "average_score", grades_aver_score);
+
+        grades_aver_gpa = cJSON_CreateNumber(temp_grade->general_aver_gpa);
+        cJSON_AddItemToObject(grades, "average_gpa", grades_aver_gpa);
+
+        grades_subject_array = cJSON_CreateArray();
+        cJSON_AddItemToObject(grades, "subject_score", grades_subject_array);
+        for (int i = 0; i < 5; i++){
+            grades_subject_score = cJSON_CreateNumber(temp_grade->subject_aver[i][0]);
+            cJSON_AddItemToObject(grades_subject_array, subjects[i], grades_subject_score);
+        }
+
+        grades_has_class = cJSON_CreateNumber(temp_grade->HAS_CLASSES_INPUT);
+        cJSON_AddItemToObject(grades, "has_class_input", grades_has_class);
+
+        temp_grade = temp_grade->next;
+    }
+
+    //printf("\n%s\n", cJSON_Print(root));
+    strcpy(target_data, cJSON_Print(root));
+    return SUCCESS;
+}
+
+enum OPERATE save_class_data(char *target_data, void *struct_pointer){
+    users_head_p usersHeadP = (users_head_p) struct_pointer;
+    USER temp_user = usersHeadP->next;
+
+    cJSON *root = NULL;
+    cJSON *users_array = NULL;
+    cJSON *users = NULL;
+    cJSON *user_name = NULL;
+    cJSON *user_work_number = NULL;
+    cJSON *user_account = NULL;
+    cJSON *user_role = NULL;
+    cJSON *user_password = NULL;
+
+    root = cJSON_CreateObject();
+
+    users_array = cJSON_CreateArray();
+    cJSON_AddItemToObject(root, "users", users_array);
+
+    while (temp_user != NULL){
+        users = cJSON_CreateObject();
+        cJSON_AddItemToArray(users_array, users);
+
+        printf("%s ", temp_user->name);
+        user_name = cJSON_CreateString(temp_user->name);
+        cJSON_AddItemToObject(users, "name", user_name);
+
+        printf("%lld ", temp_user->account);
+        char account[12];
+        char *temp_account = account;
+        lltoa(temp_user->account, temp_account, 10);
+        user_account = cJSON_CreateNumber(temp_user->account);
+        cJSON_AddItemToObject(users, "account",user_account);
+
+        printf("%s ", temp_user->password);
+        user_password = cJSON_CreateString(temp_user->password);
+        cJSON_AddItemToObject(users, "password", user_password);
+
+        printf("%ld ", temp_user->work_number);
+        user_work_number = cJSON_CreateNumber(temp_user->work_number);
+        cJSON_AddItemToObject(users, "work_number", user_work_number);
+
+        printf("%d ", temp_user->USER_ROLE);
+        user_role = cJSON_CreateNumber(temp_user->USER_ROLE);
+        cJSON_AddItemToObject(users, "user_role", user_role);
+
+        temp_user = temp_user->next;
+    }
+
+    //printf("\n%s\n", cJSON_Print(root));
+    strcpy(target_data, cJSON_Print(root));
+    return SUCCESS;
+}
+enum OPERATE save_student_data(char *target_data, void *struct_pointer){
     users_head_p usersHeadP = (users_head_p) struct_pointer;
     USER temp_user = usersHeadP->next;
 

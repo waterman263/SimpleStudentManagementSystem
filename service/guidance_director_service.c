@@ -355,11 +355,11 @@ void query_single_grade(grade_head_p head){
         if(atol(grade_number) == grade->grade_number)
         {
             printf("The class amount :%d\n", grade->class_total);
-            printf("The ADVANCED_MATHEMATICS aver :%f\n", *grade->subject_aver[ADVANCED_MATHEMATICS][0]);
-            printf("The ENGLISH aver :%f\n", *grade->subject_aver[ENGLISH][0]);
-            printf("The C_PROGRAM_LANGUAGE aver :%f\n", *grade->subject_aver[C_PROGRAM_LANGUAGE][0]);
-            printf("The PHYSICAL_EDUCATION aver :%f\n", *grade->subject_aver[PHYSICAL_EDUCATION][0]);
-            printf("The PYTHON aver :%f\n", *grade->subject_aver[PYTHON][0]);
+            printf("The ADVANCED_MATHEMATICS aver :%f\n", grade->subject_aver[ADVANCED_MATHEMATICS][0]);
+            printf("The ENGLISH aver :%f\n", grade->subject_aver[ENGLISH][0]);
+            printf("The C_PROGRAM_LANGUAGE aver :%f\n", grade->subject_aver[C_PROGRAM_LANGUAGE][0]);
+            printf("The PHYSICAL_EDUCATION aver :%f\n", grade->subject_aver[PHYSICAL_EDUCATION][0]);
+            printf("The PYTHON aver :%f\n", grade->subject_aver[PYTHON][0]);
             printf("The general_aver_score :%f\n", grade->general_aver_score);
             printf("The general_aver_gpa :%f\n", grade->general_aver_gpa);
             break;
@@ -390,11 +390,11 @@ void query_all_grades(grade_head_p head){
     while (grade != NULL)
     {
         printf("The class amount :%d\n", grade->class_total);
-        printf("The ADVANCED_MATHEMATICS aver :%f\n", *grade->subject_aver[ADVANCED_MATHEMATICS][0]);
-        printf("The ENGLISH aver :%f\n", *grade->subject_aver[ENGLISH][0]);
-        printf("The C_PROGRAM_LANGUAGE aver :%f\n", *grade->subject_aver[C_PROGRAM_LANGUAGE][0]);
-        printf("The PHYSICAL_EDUCATION aver :%f\n", *grade->subject_aver[PHYSICAL_EDUCATION][0]);
-        printf("The PYTHON aver :%f\n", *grade->subject_aver[PYTHON][0]);
+        printf("The ADVANCED_MATHEMATICS aver :%f\n", grade->subject_aver[ADVANCED_MATHEMATICS][0]);
+        printf("The ENGLISH aver :%f\n", grade->subject_aver[ENGLISH][0]);
+        printf("The C_PROGRAM_LANGUAGE aver :%f\n", grade->subject_aver[C_PROGRAM_LANGUAGE][0]);
+        printf("The PHYSICAL_EDUCATION aver :%f\n", grade->subject_aver[PHYSICAL_EDUCATION][0]);
+        printf("The PYTHON aver :%f\n", grade->subject_aver[PYTHON][0]);
         printf("The general_aver_score :%f\n", grade->general_aver_score);
         printf("The general_aver_gpa :%f\n", grade->general_aver_gpa);
         grade = grade->next;

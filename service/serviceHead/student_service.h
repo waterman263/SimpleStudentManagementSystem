@@ -10,11 +10,7 @@
 #include <stdlib.h>
 #include "operate_file.h"
 #include "entity/student.h"
-enum SELECT{
-    NUMBER,
-    NAME,
-    ALL
-};
+
 
 enum OPERATE find_student(stu_head_p headP, enum SELECT select);
 enum OPERATE find_student_by_number(stu_head_p headP);
@@ -31,5 +27,6 @@ enum OPERATE update_student(stu_head_p headP, enum SELECT select);
 enum OPERATE update_student_by_number(stu_head_p headP);
 enum OPERATE update_student_by_name(stu_head_p headP);
 void input_information(student_p target_student);
+stu_head_p  initial_student_List();
 
 #endif //STUDENT_SERVICE_H

@@ -729,6 +729,11 @@ enum OPERATE check_account(long long account, char password[], users_head_p head
         return FAILED;
     }
 
+    if (temp_for_check->USER_ROLE != ADMINISTRATOR){
+        printf("==Sorry, the system only allows administrator to log in, please change your account.\n");
+        return FAILED;
+    }
+
     int i = 0;
     while (temp_password[i] != '\n') i++;
     temp_password[i] = '\0';
