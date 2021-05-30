@@ -1,5 +1,5 @@
 /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief implement student.h
  * @version 0.1
@@ -30,7 +30,7 @@ stu_head_p  initial_student_List(){
 
 
 /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief    find information of student
  * @version 0.1
@@ -51,7 +51,7 @@ enum OPERATE find_student(stu_head_p headP , enum  SELECT select){
 
 
 /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief    find information of student by number
  * @version 0.1
@@ -126,7 +126,7 @@ enum OPERATE find_student_by_number(stu_head_p headP ){
 
 
 /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief    find information of student by name
  * @version 0.1
@@ -192,7 +192,7 @@ enum OPERATE find_student_by_name(stu_head_p headP ){
 
 
 /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief    find information of  all student
  * @version 0.1
@@ -233,7 +233,7 @@ enum OPERATE find_student_all(stu_head_p headP){
 
 
     /**
- * @file users.c
+ * @file student_service.c
  * @author @waterman263
  * @brief delete information of student
  * @version 0.1
@@ -329,7 +329,7 @@ enum OPERATE delete_student_by_number(stu_head_p headP ){
 
 
 /**
-* @file users.c
+* @file student_service.c
 * @author @waterman263
 * @brief delete information of student by name
 * @version 0.1
@@ -395,7 +395,7 @@ enum OPERATE delete_student_by_name(stu_head_p headP ){
 
 
 /**
-* @file users.c
+* @file student_service.c
 * @author @waterman263
 * @brief add student information
 * @version 0.1
@@ -528,7 +528,7 @@ enum OPERATE add_student(stu_head_p headP){
 }
 
 /**
-* @file users.c
+* @file student_service.c
 * @author @waterman263
 * @brief change information of student
 * @version 0.1
@@ -545,7 +545,7 @@ enum OPERATE update_student(stu_head_p headP, enum SELECT select){
 }
 
 /**
-* @file users.c
+* @file student_service.c
 * @author @waterman263
 * @brief change information of student by name
 * @version 0.1
@@ -619,7 +619,7 @@ enum OPERATE update_student_by_name(stu_head_p headP){
 }
 
 /**
-* @file users.c
+* @file student_service.c
 * @author @waterman263
 * @brief change information of student by number
 * @version 0.1
